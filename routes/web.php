@@ -26,7 +26,7 @@ Route::group(['prefix' => 'auth'],function(){
     Route::get('/registrar', [AuthController::class, 'register']);
     Route::get('/login', [AuthController::class, 'login'])->name('login');
 
-    Route::post('/registrar', [AuthController::class, 'do_register']);
-    Route::post('/login', [AuthController::class, 'do_login']);
+    Route::post('/do_register', [AuthController::class, 'do_register']);
+    Route::post('/do_login', [AuthController::class, 'do_login']);
 });
 
