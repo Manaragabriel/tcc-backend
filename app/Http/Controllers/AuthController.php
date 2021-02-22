@@ -33,7 +33,5 @@ class AuthController extends Controller
         return view('system/auth/login');
     }
 
-    public function do_login(){
-        return view('system/auth/login');
-    }
+  
 }

@@ -35,10 +35,14 @@ class RegisterUser extends FormRequest
         return [
             'name.required' => 'O nome é obrigatório',
             'email.required' => 'O email  é obrigatório',
+            'email.unique' => 'Este email já esta cadastrado',
             'password.required' => 'A senha é obrigatória',
             'password.confirmed' => 'Senhas diferentes',
             'phone.required' => 'O telefone é obrigatório',
+            'phone.unique' => 'Este telefone já esta cadastrado',
             'cpf.required' => 'A senha é obrigatória',
+            'cpf.unique' => 'Este CPF já esta cadastrado',
+
 
         ];
     }

@@ -10,6 +10,7 @@
         <link href="{{asset('assets/css/jquery-ui.min.css')}}" rel="stylesheet">
         <link href="{{asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('assets/css/metisMenu.min.css')}}" rel="stylesheet" type="text/css" />
+        @livewireStyles
         <link href="{{asset('assets/css/app.min.css')}}" rel="stylesheet" type="text/css" />
 
 
@@ -34,42 +35,8 @@
                                         <p class="text-muted mb-0">Faça login com sua conta</p>  
                                     </div> <!--end auth-logo-text-->  
     
-                                    
-                                    <form class="form-horizontal auth-form my-4" action="index.html">
-            
-                                        <div class="form-group">
-                                            <label for="email">Email</label>
-                                            <div class="input-group mb-3">
-                                                <span class="auth-form-icon">
-                                                    <i class="dripicons-user"></i> 
-                                                </span>                                                                                                              
-                                                <input type="email" class="form-control" id="email" placeholder="Digite seu e-mail">
-                                            </div>                                    
-                                        </div><!--end form-group--> 
-            
-                                        <div class="form-group">
-                                            <label for="userpassword">Senha</label>                                            
-                                            <div class="input-group mb-3"> 
-                                                <span class="auth-form-icon">
-                                                    <i class="dripicons-lock"></i> 
-                                                </span>                                                       
-                                                <input type="password" class="form-control" id="password" placeholder="Digite sua senha">
-                                            </div>                               
-                                        </div><!--end form-group--> 
-            
-                                        <div class="form-group row mt-4">
-                                    
-                                            <div class="col-sm-12 text-right">
-                                                <a href="auth-recover-pw.html" class="text-muted font-13"><i class="dripicons-lock"></i> Esqueceu sua senha?</a>                                    
-                                            </div><!--end col--> 
-                                        </div><!--end form-group--> 
-            
-                                        <div class="form-group mb-0 row">
-                                            <div class="col-12 mt-2">
-                                                <button class="btn btn-gradient-primary btn-round btn-block waves-effect waves-light" type="button">Enviar <i class="fas fa-sign-in-alt ml-1"></i></button>
-                                            </div><!--end col--> 
-                                        </div> <!--end form-group-->                           
-                                    </form><!--end form-->
+                                    <livewire:login-form/>     
+
                                 </div><!--end /div-->
                                 
                                 <div class="m-3 text-center text-muted">
@@ -116,6 +83,7 @@
         <script src="{{asset('assets/js/jquery.slimscroll.min.js')}}"></script>
         <script src="{{asset('plugins/apexcharts/apexcharts.min.js')}}"></script> 
         <script src="{{asset('assets/pages/jquery.projects-index.init.js')}}"></script>
+        @livewireScripts
         <script src="{{asset('assets/js/app.js')}}"></script>
         
     </body>
