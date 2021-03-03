@@ -18,9 +18,14 @@
 
         @include('system/includes/aside')
     
-       @include('system/includes/header')
-
-        @yield('content')
+        @include('system/includes/header')
+        
+        <div class="page-wrapper">
+            <div class="page-content-tab">
+                @yield('content')
+            </div>
+        </div>
+     
 
      
      

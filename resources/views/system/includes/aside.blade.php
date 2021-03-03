@@ -6,26 +6,15 @@
                     </span>
                 </a>
                 <nav class="nav">
-                    <a href="#MetricaProject" class="nav-link" data-toggle="tooltip-custom" data-placement="right" title="" data-original-title="Project" data-trigger="hover">
-                        <i data-feather="aperture" class="align-self-center menu-icon icon-dual"></i>
+                    <a href="#MetricaProject" class="nav-link <?php echo $organization_menu ? '':'active' ?>" data-toggle="tooltip-custom" data-placement="right" title="" data-original-title="Seu Perfil" data-trigger="hover">
+                        <i data-feather="user" class="align-self-center menu-icon icon-dual"></i>
                     </a><!--end MetricaProject--> 
 
-                    <a href="#MetricaApps" class="nav-link" data-toggle="tooltip-custom" data-placement="right" title="" data-original-title="Apps" data-trigger="hover">
+                    <a href="#MetricaApps" class="nav-link" data-toggle="tooltip-custom" data-placement="right" title="" data-original-title="Organização" data-trigger="hover">
                         <i data-feather="grid" class="align-self-center menu-icon icon-dual"></i>
                     </a><!--end MetricaApps-->
 
-                    <a href="#MetricaUikit" class="nav-link" data-toggle="tooltip-custom" data-placement="right" title="" data-original-title="UI Kit" data-trigger="hover">
-                        <i data-feather="package" class="align-self-center menu-icon icon-dual"></i>
-                    </a><!--end MetricaUikit-->
-
-                    <a href="#MetricaPages" class="nav-link" data-toggle="tooltip-custom" data-placement="right" title="" data-original-title="Pages" data-trigger="hover">
-                        <i data-feather="copy" class="align-self-center menu-icon icon-dual"></i>             
-                    </a><!--end MetricaPages-->
-
-                    <a href="#MetricaAuthentication" class="nav-link" data-toggle="tooltip-custom" data-placement="right" title="" data-original-title="Authentication" data-trigger="hover">
-                        <i data-feather="lock" class="align-self-center menu-icon icon-dual"></i>
-                    </a> <!--end MetricaAuthentication--> 
-
+                
                 </nav><!--end nav-->
                 <div class="pro-metrica-end">
                     <a href="" class="help" data-toggle="tooltip-custom" data-placement="right" title="" data-original-title="Chat">
@@ -49,20 +38,16 @@
                 </div>
                 <!--end logo-->
                 <div class="menu-body slimscroll">                    
-                    <div id="MetricaProject" class="main-icon-menu-pane">
+                    <div id="MetricaProject" class="main-icon-menu-pane  <?php echo $organization_menu ? '':'active' ?>">
                         <div class="title-box">
-                            <h6 class="menu-title">Projects</h6>       
+                            <h6 class="menu-title">Seu Perfil</h6>       
                         </div>
                         <ul class="nav">
                             <li class="nav-item"><a class="nav-link" href="../projects/projects-index.html">Dashboard</a></li>
-                            <li class="nav-item"><a class="nav-link" href="../projects/projects-clients.html">Clients</a></li>
-                            <li class="nav-item"><a class="nav-link" href="../projects/projects-team.html">Team</a></li>
-                            <li class="nav-item"><a class="nav-link" href="../projects/projects-project.html">Project</a></li>
-                            <li class="nav-item"><a class="nav-link" href="../projects/projects-task.html">Task</a></li>
-                            <li class="nav-item"><a class="nav-link" href="../projects/projects-kanban-board.html">Kanban Board</a></li>
-                            <li class="nav-item"><a class="nav-link" href="../projects/projects-chat.html">Chat</a></li>
-                            <li class="nav-item"><a class="nav-link" href="../projects/projects-users.html">Users</a></li>
-                            <li class="nav-item"><a class="nav-link" href="../projects/projects-create.html">Project Create</a></li>
+                            <li class="nav-item"><a class="nav-link" href="../projects/projects-clients.html">Suas Organizações</a></li>
+                            <li class="nav-item"><a class="nav-link" href="../projects/projects-team.html">Suas Equipes</a></li>
+                            <li class="nav-item"><a class="nav-link" href="../projects/projects-team.html">Suas Tarefas</a></li>
+                            <li class="nav-item"><a class="nav-link" href="../projects/projects-users.html">Configurações de Perfil</a></li>
                         </ul>
                     </div><!-- end Project -->     
 

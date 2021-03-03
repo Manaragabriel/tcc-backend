@@ -10,4 +10,14 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    protected function view_default($view,$data = []){
+        $data['organization_menu'] = false;
+        return view($view,$data);
+    }
+
+    protected function view_organization($view,$data = []){
+        $data['organization_menu'] = true;
+        return view($view,$data);
+    }
 }
