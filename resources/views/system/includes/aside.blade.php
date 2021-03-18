@@ -44,7 +44,7 @@
                         </div>
                         <ul class="nav">
                             <li class="nav-item"><a class="nav-link" href="../projects/projects-index.html">Dashboard</a></li>
-                            <li class="nav-item"><a class="nav-link" href="../projects/projects-clients.html">Suas Organizações</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{asset('painel/organizacoes')}}">Suas Organizações</a></li>
                             <li class="nav-item"><a class="nav-link" href="../projects/projects-team.html">Suas Equipes</a></li>
                             <li class="nav-item"><a class="nav-link" href="../projects/projects-team.html">Suas Tarefas</a></li>
                             <li class="nav-item"><a class="nav-link" href="../projects/projects-users.html">Configurações de Perfil</a></li>

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\OrganizationController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,6 +21,11 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'painel', 'middleware' => ['auth']],function(){
     Route::get('/', [DashboardController::class, 'index']);
+
+    Route::group(['prefix' => 'organizacoes'], function(){
+        Route::get('/',[OrganizationController::class, 'index']);
+        Route::get('/criar',[OrganizationController::class, 'create']);
+    });
 });
 
 Route::group(['prefix' => 'auth'],function(){
