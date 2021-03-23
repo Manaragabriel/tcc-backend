@@ -25,7 +25,11 @@ Route::group(['prefix' => 'painel', 'middleware' => ['auth']],function(){
     Route::group(['prefix' => 'organizacoes'], function(){
         Route::get('/',[OrganizationController::class, 'index']);
         Route::get('/criar',[OrganizationController::class, 'create']);
+        Route::get('/editar/{id}',[OrganizationController::class, 'edit']);
+
     });
+    Route::resource('organizacoes',OrganizationController::class);
+
 });
 
 Route::group(['prefix' => 'auth'],function(){

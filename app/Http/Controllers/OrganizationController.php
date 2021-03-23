@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Organization;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\RegisterOrganization;
+use App\Http\Requests\EditOrganization;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 class OrganizationController extends Controller
 {
     /**
@@ -14,7 +17,8 @@ class OrganizationController extends Controller
      */
     public function index()
     {
-        return $this->view_default('system/organizations/index');
+        $data['organizations'] = Organization::paginate(9);
+        return $this->view_default('system/organizations/index',$data);
 
     }
 
@@ -35,9 +39,26 @@ class OrganizationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RegisterOrganization $request)
     {
-        //
+        try{
+            $validOrganization = $request->validated();
+          
+            if($request->hasFile('image')){
+                $file_name = $request->file('image')->getClientOriginalName();
+                $file_path = 'public/organizations/'.$file_name;
+                Storage::disk('local')->put($file_path, file_get_contents($request->file('image')));
+                $validOrganization['image'] = $file_name;
+                
+            }
+            
+            $validOrganization = new Organization($validOrganization);
+            $validOrganization->setSlug();
+            $validOrganization->save();
+            return redirect('painel/organizacoes');
+        }catch(\Exception $e){
+            dd($e->getMessage());
+        }
     }
 
     /**
@@ -57,9 +78,10 @@ class OrganizationController extends Controller
      * @param  \App\Models\Organization  $organization
      * @return \Illuminate\Http\Response
      */
-    public function edit(Organization $organization)
+    public function edit($id)
     {
-        //
+        $data['organization'] = Organization::find($id);
+        return $this->view_default('system/organizations/edit',$data);
     }
 
     /**
@@ -69,9 +91,27 @@ class OrganizationController extends Controller
      * @param  \App\Models\Organization  $organization
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Organization $organization)
+    public function update(EditOrganization $request,  $id)
     {
-        //
+        $oldOrganization = Organization::where('id',$id);
+
+        try{
+            $validOrganization = $request->validated();
+          
+            if($request->hasFile('image')){
+                $file_name = $request->file('image')->getClientOriginalName();
+                $file_path = 'public/organizations/'.$file_name;
+                Storage::disk('local')->put($file_path, file_get_contents($request->file('image')));
+                Storage::disk('local')->delete('public/thumbs/'.$oldOrganization['image']);
+                $validOrganization['image'] = $file_name;
+                
+            }
+            
+            $validOrganization = $oldOrganization->update($validOrganization);
+            return redirect('painel/organizacoes');
+        }catch(\Exception $e){
+            dd($e->getMessage());
+        }
     }
 
     /**
@@ -80,8 +120,14 @@ class OrganizationController extends Controller
      * @param  \App\Models\Organization  $organization
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Organization $organization)
+    public function destroy($id)
     {
-        //
+        
+        try{
+            Organization::find($id)->delete();
+            return redirect('painel/organizacoes');
+        }catch(\Exception $e){
+            dd($e->getMessage());
+        }
     }
 }
