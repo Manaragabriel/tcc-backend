@@ -12,7 +12,8 @@ class Organization extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['name','image','slug','cnpj','description'];
+    protected $fillable = ['name','image','slug','cnpj','description','user_id'];
+    
     public function user(){
         return  $this->hasOne(User::class);
     }

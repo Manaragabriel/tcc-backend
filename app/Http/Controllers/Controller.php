@@ -20,4 +20,8 @@ class Controller extends BaseController
         $data['organization_menu'] = true;
         return view($view,$data);
     }
+
+    protected function generate_log($message){
+        dd($message);
+    }
 }
