@@ -8,9 +8,16 @@ use App\Http\Requests\RegisterOrganization;
 use App\Http\Requests\EditOrganization;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use App\Repositories\Organization\IOrganizationRepository;
+use App\Repositories\Organization\OrganizationRepository;
 
 class OrganizationController extends Controller
 {
+    private $organizationRepository;
+
+    public function __construct(IOrganizationRepository $organizationRepository){
+        $this->organizationRepository = $organizationRepository;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +25,7 @@ class OrganizationController extends Controller
      */
     public function index()
     {
-        $data['organizations'] = Organization::where('user_id',auth()->user()->id)->paginate(9);
+        $data['organizations'] = $this->organizationRepository->getUserOrganizations();
         return $this->view_default('system/organizations/index',$data);
 
     }
@@ -53,9 +60,8 @@ class OrganizationController extends Controller
                 
             }
             $validOrganization['user_id'] = auth()->user()->id;
-            $validOrganization = new Organization($validOrganization);
-            $validOrganization->setSlug();
-            $validOrganization->save();
+            $this->organizationRepository->storeOrganization($validOrganization);
+
             return redirect('painel/organizacoes');
         }catch(\Exception $e){
             $this->generate_log($e->getMessage());
@@ -97,9 +103,10 @@ class OrganizationController extends Controller
      */
     public function update(EditOrganization $request,  $id)
     {
-        $oldOrganization = Organization::where('id',$id);
+        $oldOrganization = Organization::where('id',$id)->first();
         
         if($request->user()->cannot('update',$oldOrganization)){
+            
             abort(403);
         }
 
@@ -114,8 +121,7 @@ class OrganizationController extends Controller
                 $validOrganization['image'] = $file_name;
                 
             }
-            
-            $validOrganization = $oldOrganization->update($validOrganization);
+            $this->organizationRepository->updateOrganization($validOrganization,$oldOrganization);
             return redirect('painel/organizacoes');
         }catch(\Exception $e){
             $this->generate_log($e->getMessage());
@@ -135,7 +141,7 @@ class OrganizationController extends Controller
             abort(403);
         }
         try{
-            $organization->delete();
+            $this->organizationRepository->deleteteOrganization($id);
             return redirect('painel/organizacoes');
         }catch(\Exception $e){
             $this->generate_log($e->getMessage());
