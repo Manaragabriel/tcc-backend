@@ -39,6 +39,7 @@ Route::group(['prefix' => 'painel', 'middleware' => ['auth']],function(){
 Route::group(['prefix' => 'auth'],function(){
     Route::get('/registrar', [AuthController::class, 'register']);
     Route::get('/login', [AuthController::class, 'login'])->name('login');
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::post('/do_register', [AuthController::class, 'do_register']);
     Route::post('/do_login', [AuthController::class, 'do_login']);

@@ -24,13 +24,11 @@
                         <div class="card auth-card shadow-lg">
                             <div class="card-body">
                                 <div class="px-3">
-                                    <div class="auth-logo-box">
-                                        <a href="../dashboard/analytics-index.html" class="logo logo-admin"><img src="../assets/images/logo-sm.png" height="55" alt="logo" class="auth-logo"></a>
-                                    </div><!--end auth-logo-box-->
+                                
                                     
                                     <div class="text-center auth-logo-text">
                                         <h4 class="mt-0 mb-3 mt-5">Vamos usar o Gerenciador De Projetos</h4>
-                                        <p class="text-muted mb-0">Faça login com sua conta</p>  
+                                        <p class="text-muted mb-0">Preencha os campos para criar sua conta</p>  
                                     </div> <!--end auth-logo-text-->  
     
                                     

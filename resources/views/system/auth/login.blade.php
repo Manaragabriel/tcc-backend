@@ -26,9 +26,7 @@
                         <div class="card auth-card shadow-lg">
                             <div class="card-body">
                                 <div class="px-3">
-                                    <div class="auth-logo-box">
-                                        <a href="../dashboard/analytics-index.html" class="logo logo-admin"><img src="../assets/images/logo-sm.png" height="55" alt="logo" class="auth-logo"></a>
-                                    </div><!--end auth-logo-box-->
+                              
                                     
                                     <div class="text-center auth-logo-text">
                                         <h4 class="mt-0 mb-3 mt-5">Vamos usar o Gerenciador De Projetos</h4>
@@ -44,26 +42,7 @@
                                 </div>
                             </div><!--end card-body-->
                         </div><!--end card-->
-                        <div class="account-social text-center mt-4">
-                            <h6 class="my-4">Or Login With</h6>
-                            <ul class="list-inline mb-4">
-                                <li class="list-inline-item">
-                                    <a href="" class="">
-                                        <i class="fab fa-facebook-f facebook"></i>
-                                    </a>                                    
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="" class="">
-                                        <i class="fab fa-twitter twitter"></i>
-                                    </a>                                    
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="" class="">
-                                        <i class="fab fa-google google"></i>
-                                    </a>                                    
-                                </li>
-                            </ul>
-                        </div><!--end account-social-->
+                    
                     </div><!--end auth-page-->
                 </div><!--end col-->           
             </div><!--end row-->

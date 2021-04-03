@@ -29,11 +29,8 @@
             <div class="main-menu-inner">
                 <!-- LOGO -->
                 <div class="topbar-left">
-                    <a href="../projects/projects-index.html" class="logo">
-                        <span>
-                            <img src="../assets/images/logo-dark.png" alt="logo-large" class="logo-lg logo-dark">
-                            <img src="../assets/images/logo.png" alt="logo-large" class="logo-lg logo-light">
-                        </span>
+                    <a href="../projects/projects-index.html" class="logo h6 menu-title">
+                       {{$organization_name}}
                     </a>
                 </div>
                 <!--end logo-->
