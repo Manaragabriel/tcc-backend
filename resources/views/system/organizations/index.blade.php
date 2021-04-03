@@ -70,7 +70,7 @@
                                         <div class="text-center project-card">
                                             <img src="../assets/images/widgets/p-1.svg" alt="" height="80" class="mx-auto d-block mb-3"> 
                        
-                                            <h3 class="project-title ">{{$organization->name}}</h3>
+                                            <a class="project-title h3 " href="/painel/{{$organization->slug}}">{{$organization->name}}</a>
                                             <p class="text-muted"><span class="text-secondary font-14"><b>Description :</b></span>There are many variations of passages of 
                                                 Lorem Ipsum available, but the majority have suffered alteration in some form.
                                             </p>

@@ -19,7 +19,12 @@ class Organization extends Model
     }
 
     public function setSlug($value = null){
-        $value = $value ? $value : $this->title;
-        $this->slug =  Str::slug($value);
+        $value = $value ? $value : $this->name;
+        $slug = Str::slug($value);
+        $verify_slug = self::where('slug',$slug)->get();
+        if(count($verify_slug) > 0){
+            $slug .= '-'.( count($verify_slug) + 1 );
+        }
+        $this->slug = $slug;
    }
 }

@@ -16,7 +16,7 @@ class OrganizationRepository implements IOrganizationRepository{
 
     public function storeOrganization($organization){
         $this->organizationModel->fill($organization);
-        $this->organizationModel->setSlug();
+        $this->organizationModel->setSlug($organization['name']);
         $this->organizationModel->save();
         return true;
     }

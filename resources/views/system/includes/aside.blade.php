@@ -6,11 +6,11 @@
                     </span>
                 </a>
                 <nav class="nav">
-                    <a href="#MetricaProject" class="nav-link <?php echo $organization_menu ? '':'active' ?>" data-toggle="tooltip-custom" data-placement="right" title="" data-original-title="Seu Perfil" data-trigger="hover">
+                    <a href="#MetricaProject" class="nav-link {{ $organization_menu ? '':'active' }}" data-toggle="tooltip-custom" data-placement="right" title="" data-original-title="Seu Perfil" data-trigger="hover">
                         <i data-feather="user" class="align-self-center menu-icon icon-dual"></i>
                     </a><!--end MetricaProject--> 
 
-                    <a href="#MetricaApps" class="nav-link" data-toggle="tooltip-custom" data-placement="right" title="" data-original-title="Organização" data-trigger="hover">
+                    <a href="#MetricaApps" class="nav-link {{ $organization_menu ? 'active':'' }}" data-toggle="tooltip-custom" data-placement="right" title="" data-original-title="Organização" data-trigger="hover">
                         <i data-feather="grid" class="align-self-center menu-icon icon-dual"></i>
                     </a><!--end MetricaApps-->
 
@@ -38,7 +38,7 @@
                 </div>
                 <!--end logo-->
                 <div class="menu-body slimscroll">                    
-                    <div id="MetricaProject" class="main-icon-menu-pane  <?php echo $organization_menu ? '':'active' ?>">
+                    <div id="MetricaProject" class="main-icon-menu-pane  {{ $organization_menu ? '':'active' }}">
                         <div class="title-box">
                             <h6 class="menu-title">Seu Perfil</h6>       
                         </div>
@@ -51,22 +51,15 @@
                         </ul>
                     </div><!-- end Project -->     
 
-                    <div id="MetricaApps" class="main-icon-menu-pane">
+                    <div id="MetricaApps" class="main-icon-menu-pane {{ $organization_menu ? 'active':'' }}">
                         <div class="title-box">
-                            <h6 class="menu-title">Apps</h6>
+                            <h6 class="menu-title">MENU</h6>
                         </div>
                         <ul class="nav metismenu">
-                            <li class="nav-item">
-                                <a class="nav-link" href="javascript: void(0);"><span class="w-100">Email</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
-                                <ul class="nav-second-level" aria-expanded="false">
-                                    <li><a href="../apps/email-inbox.html">Inbox</a></li>
-                                    <li><a href="../apps/email-read.html">Read Email</a></li>            
-                                </ul>            
-                            </li><!--end nav-item-->
-                            <li class="nav-item"><a class="nav-link" href="../apps/chat.html">Chat</a></li>
-                            <li class="nav-item"><a class="nav-link" href="../apps/contact-list.html">Contact List</a></li>
-                            <li class="nav-item"><a class="nav-link" href="../apps/calendar.html">Calendar</a></li>
-                            <li class="nav-item"><a class="nav-link" href="../apps/invoice.html">Invoice</a></li>                            
+                            <li class="nav-item"><a class="nav-link" href="../apps/chat.html">Projetos</a></li>
+                            <li class="nav-item"><a class="nav-link" href="../apps/chat.html">Chamados</a></li>
+                            <li class="nav-item"><a class="nav-link" href="../apps/contact-list.html">Equipes</a></li>
+                            <li class="nav-item"><a class="nav-link" href="../apps/calendar.html">Membros</a></li>
                         </ul>
                     </div><!-- end Crypto -->
                     

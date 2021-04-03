@@ -30,6 +30,10 @@ Route::group(['prefix' => 'painel', 'middleware' => ['auth']],function(){
     });
     Route::resource('organizacoes',OrganizationController::class);
 
+    Route::group(['prefix' => '{slug}'],function(){
+        Route::get('/', [DashboardController::class, 'organization']);
+    });
+
 });
 
 Route::group(['prefix' => 'auth'],function(){
