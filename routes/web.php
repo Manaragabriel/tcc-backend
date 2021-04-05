@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\OrganizationController;
+use App\Http\Controllers\TeamsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,6 +33,15 @@ Route::group(['prefix' => 'painel', 'middleware' => ['auth']],function(){
 
     Route::group(['prefix' => '{slug}'],function(){
         Route::get('/', [DashboardController::class, 'organization']);
+
+        Route::group(['prefix' => 'equipes'], function(){
+            Route::get('/',[TeamsController::class, 'index']);
+            Route::get('/criar',[TeamsController::class, 'create']);
+            Route::get('/editar/{team}',[TeamsController::class, 'edit']);
+    
+        });
+        Route::resource('equipes',TeamsController::class);
+
     });
 
 });

@@ -2,11 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Teams;
 use Illuminate\Http\Request;
+use App\Repositories\Team\ITeamRepository;
+use App\Repositories\Team\TeamRepository;
+use App\Http\Requests\RegisterTeam;
+use App\Http\Requests\EditTeam;
+use Illuminate\Support\Facades\Storage;
+use App\Models\Teams;
 
 class TeamsController extends Controller
 {
+    private $teamRepository;
+
+    public function __construct(ITeamRepository $teamRepository){
+        $this->teamRepository = $teamRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +25,8 @@ class TeamsController extends Controller
      */
     public function index()
     {
-        //
+        $data['teams'] = $this->teamRepository->getOrganizationTeams(request()->slug);
+        return $this->view_organization('system/teams/index',$data);
     }
 
     /**
@@ -24,7 +36,7 @@ class TeamsController extends Controller
      */
     public function create()
     {
-        //
+        return $this->view_organization('system/teams/create');
     }
 
     /**
@@ -33,9 +45,25 @@ class TeamsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RegisterTeam $request)
     {
-        //
+        $organization_slug = request()->slug;
+        try{
+            $validTeam = $request->validated();
+          
+            if($request->hasFile('image')){
+                $file_name = $request->file('image')->getClientOriginalName();
+                $file_path = 'public/teams/'.$file_name;
+                Storage::disk('local')->put($file_path, file_get_contents($request->file('image')));
+                $validTeam['image'] = $file_name;
+                
+            }
+            $this->teamRepository->storeTeam($validTeam);
+
+            return redirect('painel/'.$organization_slug.'/equipes');
+        }catch(\Exception $e){
+            $this->generate_log($e->getMessage());
+        }
     }
 
     /**
@@ -46,7 +74,7 @@ class TeamsController extends Controller
      */
     public function show(Teams $teams)
     {
-        //
+      
     }
 
     /**
@@ -55,9 +83,11 @@ class TeamsController extends Controller
      * @param  \App\Models\Teams  $teams
      * @return \Illuminate\Http\Response
      */
-    public function edit(Teams $teams)
+    public function edit($slug,Teams $team)
     {
-        //
+        
+        $data['team'] = $team;
+        return $this->view_organization('system/teams/edit',$data);
     }
 
     /**
@@ -67,9 +97,31 @@ class TeamsController extends Controller
      * @param  \App\Models\Teams  $teams
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Teams $teams)
+    public function update($slug,EditTeam $request, $team_id)
     {
-        //
+        $oldTeam = TeamRepository::find($team_id);
+        
+      /*  if($request->user()->cannot('update',$oldOrganization)){
+            
+            abort(403);
+        } */
+
+        try{
+            $validTeam = $request->validated();
+          
+            if($request->hasFile('image')){
+                $file_name = $request->file('image')->getClientOriginalName();
+                $file_path = 'public/teams/'.$file_name;
+                Storage::disk('local')->put($file_path, file_get_contents($request->file('image')));
+                Storage::disk('local')->delete('public/teams/'.$oldTeam['image']);
+                $validTeam['image'] = $file_name;
+                
+            }
+            $this->teamRepository->updateTeam($validTeam,$oldTeam);
+            return redirect('painel/'.$slug.'/equipes');
+        }catch(\Exception $e){
+            $this->generate_log($e->getMessage());
+        }
     }
 
     /**
@@ -78,8 +130,13 @@ class TeamsController extends Controller
      * @param  \App\Models\Teams  $teams
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Teams $teams)
+    public function destroy($slug,$id)
     {
-        //
+        try{
+            $this->teamRepository->deleteteTeam($id);
+            return redirect('painel/'.request()->slug.'/equipes');
+        }catch(\Exception $e){
+            $this->generate_log($e->getMessage());
+        }
     }
 }

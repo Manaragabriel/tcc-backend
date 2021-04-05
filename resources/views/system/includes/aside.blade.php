@@ -55,7 +55,7 @@
                         <ul class="nav metismenu">
                             <li class="nav-item"><a class="nav-link" href="../apps/chat.html">Projetos</a></li>
                             <li class="nav-item"><a class="nav-link" href="../apps/chat.html">Chamados</a></li>
-                            <li class="nav-item"><a class="nav-link" href="../apps/contact-list.html">Equipes</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{url()->current()}}/equipes">Equipes</a></li>
                             <li class="nav-item"><a class="nav-link" href="../apps/calendar.html">Membros</a></li>
                         </ul>
                     </div><!-- end Crypto -->

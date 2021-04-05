@@ -9,10 +9,10 @@
                                     <ol class="breadcrumb">
                                         
                                         <li class="breadcrumb-item"><a href="javascript:void(0);">Sistema</a></li>
-                                        <li class="breadcrumb-item active">Criar organização</li>
+                                        <li class="breadcrumb-item active">Criar equipe</li>
                                     </ol>
                                 </div>
-                                <h4 class="page-title">Cadastre sua organização!</h4>
+                                <h4 class="page-title">Cadastre sua equipe!</h4>
                             </div><!--end page-title-box-->
                         </div><!--end col-->
                     </div>
@@ -22,28 +22,21 @@
                             <div class="card">
                                 <div class="card-body">        
                                     
-                                 <form method="POST" action="{{asset('/painel/organizacoes')}}" enctype="multipart/form-data">
+                                 <form method="POST" action="/painel/{{request()->slug}}/equipes" enctype="multipart/form-data">
                                     {{csrf_field()}}
                                     <div class="row">
                                             <div class="col-lg-6">
                                                 <div class="form-group ">
-                                                    <label for="name" class="col-form-label">Nome da organização*</label>
+                                                    <label for="name" class="col-form-label">Nome da equipe*</label>
                                                     
                                                     <input class="form-control" name="name" type="text" value="{{old('name')}}" id="name">
                                                     @error('name')
                                                         <span class="text-danger">{{$errors->first('name')}}</span>
                                                     @enderror
                                                 </div>
+                                             
                                                 <div class="form-group ">
-                                                    <label for="cnpj" class="col-form-label">CNPJ da organização*</label>
-                                                    
-                                                    <input class="form-control" name="cnpj" type="text" value="{{old('cnpj')}}" id="cnpj">
-                                                    @error('cnpj')
-                                                        <span class="text-danger">{{$errors->first('cnpj')}}</span>
-                                                    @enderror
-                                                </div>
-                                                <div class="form-group ">
-                                                    <label for="image" class="col-form-label text-right">Imagem da Organização*</label>
+                                                    <label for="image" class="col-form-label text-right">Imagem da Equipe*</label>
                                                     <div>
                                                         <input class="form-control" type="file" name="image" id="image">
                                                     </div>
@@ -51,17 +44,7 @@
                                                         <span class="text-danger">{{$errors->first('image')}}</span>
                                                     @enderror
                                                 </div> 
-                                                <div class="form-group ">
-                                                    <label for="description" class=" col-form-label text-right">Descrição</label>
-                                                    <div>
-                                                        <textarea class="form-control"  name="description" id="description">
-                                                        {{old('description')}}
-                                                        </textarea>
-                                                    </div>
-                                                    @error('description')
-                                                        <span class="text-danger">{{$errors->first('description')}}</span>
-                                                    @enderror
-                                                </div>
+                                            
 
                                                 <div class="form-group text-right">
                                                     <div class="col-3">

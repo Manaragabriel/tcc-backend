@@ -1,35 +1,46 @@
 <?php 
-namespace App\Repositories\Organization;
-use App\Models\Organization;
+namespace App\Repositories\Team;
+use App\Models\Teams;
+use App\Repositories\Organization\OrganizationRepository;
 
-class OrganizationRepository implements IOrganizationRepository{
+class TeamRepository implements ITeamRepository{
     
-    private $organizationModel;
+    private $teamModel;
 
-    public function __construct(Organization $organizationModel){
-        $this->organizationModel = $organizationModel;
+    public function __construct(Teams $teamModel){
+        $this->teamModel = $teamModel;
     }
 
-    public function getUserOrganizations(){
-        return Organization::where('user_id',auth()->user()->id)->paginate();
+    public function getOrganizationTeams($organization_slug){
+        $this->teamModel =  $this->teamModel->whereHas('organization', function($query) use($organization_slug){
+            $query->where('organizations.slug', $organization_slug);
+        });
+        return $this->teamModel->paginate();
     }
 
-    public static function getOrganizationBySlug($slug){
-        return Organization::where('slug',$slug)->first();
+    public static function getTeamBySlug($slug){
+        return Teams::where('slug',$slug)->first();
     }
 
-    public function storeOrganization($organization){
-        $this->organizationModel->fill($organization);
-        $this->organizationModel->setSlug($organization['name']);
-        $this->organizationModel->save();
+    public static function find($team_id){
+        return Teams::find($team_id);
+    }
+
+    public function storeTeam($team){
+        $team['organization_id'] = OrganizationRepository::getOrganizationBySlug(request()->slug)->id;
+        $this->teamModel->fill($team);
+        $this->teamModel->setSlug($team['name']);
+        $this->teamModel->save();
         return true;
     }
-    public function updateOrganization($organization, $oldOrganization){
-        $oldOrganization->update($organization);
+    public function updateTeam($team, $oldTeam){
+       
+        $oldTeam->update($team);
         return true;
     }
-    public function deleteteOrganization($id){
-        return $this->organizationModel->find($id)->delete();
+    public function deleteteTeam($id){
+       
+        return $this->teamModel->find($id)->delete();
     }
 
 }
