@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\TeamsController;
+use App\Http\Controllers\ProjectsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,6 +42,14 @@ Route::group(['prefix' => 'painel', 'middleware' => ['auth']],function(){
     
         });
         Route::resource('equipes',TeamsController::class);
+
+        Route::group(['prefix' => 'projetos'], function(){
+            Route::get('/',[ProjectsController::class, 'index']);
+            Route::get('/criar',[ProjectsController::class, 'create']);
+            Route::get('/editar/{project}',[ProjectsController::class, 'edit']);
+    
+        });
+        Route::resource('projetos',ProjectsController::class);
 
     });
 

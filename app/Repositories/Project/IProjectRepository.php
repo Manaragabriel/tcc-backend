@@ -1,12 +1,13 @@
 <?php 
-namespace App\Repositories\Organization;
+namespace App\Repositories\Project;
 
 
-interface IOrganizationRepository{
-    public function getUserOrganizations();
-    public function storeOrganization($organization);
-    public function updateOrganization($organization,$oldOrganization);
-    public function deleteteOrganization($id);
+interface IProjectRepository{
+    public function getOrganizationProjects($slug);
+    public static function find($project_id);
+    public function storeProject($team);
+    public function updateProject($project,$oldProject);
+    public function deleteteProject($id);
 }
 
 
