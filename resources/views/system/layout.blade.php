@@ -5,6 +5,7 @@
         <base href="{{asset('/')}}"/>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Gerenciador de Projetos</title>
+        <link href="{{asset('assets/plugins/dragula/dragula.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('assets/css/jquery-ui.min.css')}}" rel="stylesheet">
         <link href="{{asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
@@ -37,8 +38,10 @@
         <script src="{{asset('assets/js/waves.js')}}"></script>
         <script src="{{asset('assets/js/feather.min.js')}}"></script>
         <script src="{{asset('assets/js/jquery.slimscroll.min.js')}}"></script>
-        <script src="{{asset('plugins/apexcharts/apexcharts.min.js')}}"></script> 
+        <script src="{{asset('plugins/apexcharts/apexcharts.min.js')}}"></script>
         <script src="{{asset('assets/pages/jquery.projects-index.init.js')}}"></script>
+        <script src="{{asset('assets/plugins/dragula/dragula.min.js')}}"></script>
+        <script src="{{asset('assets/pages/jquery.dragula.init.js')}}"></script>
         <script src="{{asset('assets/js/app.js')}}"></script>
         @yield('scripts')
 

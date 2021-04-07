@@ -45,6 +45,8 @@ Route::group(['prefix' => 'painel', 'middleware' => ['auth']],function(){
 
         Route::group(['prefix' => 'projetos'], function(){
             Route::get('/',[ProjectsController::class, 'index']);
+            Route::get('/{project}/kanban',[ProjectsController::class, 'kanban']);
+
             Route::get('/criar',[ProjectsController::class, 'create']);
             Route::get('/editar/{project}',[ProjectsController::class, 'edit']);
     

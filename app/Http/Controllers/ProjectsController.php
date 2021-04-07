@@ -145,4 +145,9 @@ class ProjectsController extends Controller
             $this->generate_log($e->getMessage());
         }
     }
+
+    public function kanban(Request $request,$slug,$project){
+        $data = [];
+        return $this->view_organization('system/projects/kanban',$data);
+    }
 }
