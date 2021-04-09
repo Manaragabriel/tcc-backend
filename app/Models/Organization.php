@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\SoftDeletes;
+
 class Organization extends Model
 {
     use HasFactory;
@@ -26,5 +27,8 @@ class Organization extends Model
             $slug .= '-'.( count($verify_slug) + 1 );
         }
         $this->slug = $slug;
+   }
+   public function members(){
+        return $this->morphToMany(User::class, 'organizations_members');
    }
 }

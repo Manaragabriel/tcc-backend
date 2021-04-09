@@ -23,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(IOrganizationRepository::class, OrganizationRepository::class);
+        //$this->app->bind(IOrganizationRepository::class, OrganizationRepository::class);
         $this->app->bind(ITeamRepository::class,TeamRepository::class);
         $this->app->bind(IProjectRepository::class, ProjectRepository::class);
         $this->app->bind(ICallRepository::class,CallRepository::class);

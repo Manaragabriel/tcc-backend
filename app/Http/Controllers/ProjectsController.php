@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Repositories\Project\IProjectRepository;
 use App\Repositories\Project\ProjectRepository;
+use App\Repositories\Organization\OrganizationRepository;
 use App\Http\Requests\RegisterProject;
 use App\Http\Requests\EditProject;
 use Illuminate\Support\Facades\Storage;
@@ -19,8 +20,10 @@ class ProjectsController extends Controller
      */
     private $projectRepository;
 
+
     public function __construct(IProjectRepository $projectRepository){
         $this->projectRepository = $projectRepository;
+       
     }
 
     /**
@@ -147,7 +150,11 @@ class ProjectsController extends Controller
     }
 
     public function kanban(Request $request,$slug,$project){
-        $data = [];
+        $data['members'] =  OrganizationRepository::getOrganizationMembers($slug);
         return $this->view_organization('system/projects/kanban',$data);
+    }
+
+    public function store_task(Request $request,$slug,$project){
+       dd('teste');
     }
 }
