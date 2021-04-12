@@ -9,10 +9,10 @@ use App\Repositories\Team\ITeamRepository;
 use App\Repositories\Team\TeamRepository;
 use App\Repositories\Project\IProjectRepository;
 use App\Repositories\Project\ProjectRepository;
-use App\Repositories\Project\ITaskRepository;
-use App\Repositories\Project\TaskRepository;
-use App\Repositories\Project\ICallRepository;
-use App\Repositories\Project\CallRepository;
+use App\Repositories\Task\ITaskRepository;
+use App\Repositories\Task\TaskRepository;
+use App\Repositories\Call\ICallRepository;
+use App\Repositories\Call\CallRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //$this->app->bind(IOrganizationRepository::class, OrganizationRepository::class);
+        $this->app->bind(IOrganizationRepository::class, OrganizationRepository::class);
         $this->app->bind(ITeamRepository::class,TeamRepository::class);
         $this->app->bind(IProjectRepository::class, ProjectRepository::class);
         $this->app->bind(ICallRepository::class,CallRepository::class);

@@ -29,6 +29,6 @@ class Organization extends Model
         $this->slug = $slug;
    }
    public function members(){
-        return $this->morphToMany(User::class, 'organizations_members');
+        return $this->belongsToMany(User::class, 'organizations_members');
    }
 }

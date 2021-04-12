@@ -32,7 +32,7 @@
                                 <ul class="list-inline">
                                     <li class="list-inline-item">
                                         <div class="input-group">                               
-                                            <input type="text" id="example-input1-group2" name="example-input1-group2" class="form-control" placeholder="Search">
+                                            <input type="text" id="example-input1-group2" name="example-input1-group2" class="form-control" placeholder="Pesquisar">
                                             <span class="input-group-append">
                                                 <button type="button" class="btn btn-gradient-primary"><i class="fas fa-search"></i></button>
                                             </span>

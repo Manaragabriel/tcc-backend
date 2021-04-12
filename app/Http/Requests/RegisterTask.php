@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class EditProject extends FormRequest
+class RegisterTask extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,18 +25,15 @@ class EditProject extends FormRequest
     {
         return [
             'title' => 'required|max:256',
-            'description' => 'required',      
+            'description' => 'required',  
+            'user_id' => 'required|exists:users,id',      
         ];
     }
     public function messages(){
         return [
             'title.required' => 'O titulo é obrigatório',
             'description.required' => 'A descrição é obrigatório',
-
+            'users.required' => 'É obrigatório escolher o responsavel',
         ];
-    }
-    protected function failedValidation(Validator $validator)
-    {
-        throw new HttpResponseException(response()->json($validator->errors(), 422));
     }
 }

@@ -3,14 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Repositories\Task\ITaskRepository;
 use App\Repositories\Project\IProjectRepository;
 use App\Repositories\Project\ProjectRepository;
-use App\Repositories\Organization\OrganizationRepository;
 use App\Http\Requests\RegisterProject;
 use App\Http\Requests\EditProject;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Projects;
-
+use App\Models\Organization;
+use App\Http\Requests\RegisterTask;
 class ProjectsController extends Controller
 {
     /**
@@ -19,11 +20,12 @@ class ProjectsController extends Controller
      * @return \Illuminate\Http\Response
      */
     private $projectRepository;
+    private $taskRepository;
 
-
-    public function __construct(IProjectRepository $projectRepository){
+    public function __construct(IProjectRepository $projectRepository, ITaskRepository $taskRepository){
         $this->projectRepository = $projectRepository;
-       
+        $this->taskRepository = $taskRepository;
+
     }
 
     /**
@@ -150,11 +152,15 @@ class ProjectsController extends Controller
     }
 
     public function kanban(Request $request,$slug,$project){
-        $data['members'] =  OrganizationRepository::getOrganizationMembers($slug);
+        
+        $project = $this->projectRepository->getProjectBySlug($project);
+        $data['members'] =  Organization::with('members')->where('slug',$slug)->first()->members;
+        $data['to_do'] = $this->taskRepository->getByStatus(1,$project->id);
+        $data['doing'] = $this->taskRepository->getByStatus(2,$project->id);
+        $data['avaliation'] = $this->taskRepository->getByStatus(3,$project->id);
+        $data['done'] = $this->taskRepository->getByStatus(4,$project->id);
+       
         return $this->view_organization('system/projects/kanban',$data);
     }
 
-    public function store_task(Request $request,$slug,$project){
-       dd('teste');
-    }
 }

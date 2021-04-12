@@ -4,9 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\Tasks;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\RegisterTask;
+use App\Repositories\Task\ITaskRepository;
 class TasksController extends Controller
 {
+    
+    private $taskRepository;
+    private $projectRepository;
+
+    public function __construct(ITaskRepository $taskRepository,IProjectRepository $projectRepository){
+        $this->taskRepository = $taskRepository;
+        $this->projectRepository = $projectRepository;
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -33,9 +43,17 @@ class TasksController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RegisterTask $request,$slug,$project)
     {
-        //
+        try{
+            $validTask = $request->validated();
+            $validTask['project_id'] = $this->projectRepository->getProjectBySlug($project)->id;
+            $this->taskRepository->storeTask($validTask);
+            return response(200);
+        }catch(\Exception $e){
+            $this->generate_log($e->getMessage());
+            return response(500);
+        }
     }
 
     /**
@@ -78,8 +96,13 @@ class TasksController extends Controller
      * @param  \App\Models\Tasks  $tasks
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tasks $tasks)
+    public function destroy($slug,$project,$id)
     {
-        //
+        try{
+            $this->taskRepository->deleteTask($id);
+            return redirect('painel/'.request()->slug.'/projetos/'.$project.'/kanban');
+        }catch(\Exception $e){
+            $this->generate_log($e->getMessage());
+        }
     }
 }

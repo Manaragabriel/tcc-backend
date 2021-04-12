@@ -11,6 +11,7 @@
         <link href="{{asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('assets/css/metisMenu.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('assets/css/app.min.css')}}" rel="stylesheet" type="text/css" />
+        @livewireStyles
         @yield('styles')
       
     </head>
@@ -43,6 +44,7 @@
         <script src="{{asset('assets/plugins/dragula/dragula.min.js')}}"></script>
         <script src="{{asset('assets/pages/jquery.dragula.init.js')}}"></script>
         <script src="{{asset('assets/js/app.js')}}"></script>
+        @livewireScripts
         @yield('scripts')
 
        

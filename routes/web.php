@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\TeamsController;
 use App\Http\Controllers\ProjectsController;
+use App\Http\Controllers\TasksController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -46,7 +47,9 @@ Route::group(['prefix' => 'painel', 'middleware' => ['auth']],function(){
         Route::group(['prefix' => 'projetos'], function(){
             Route::get('/',[ProjectsController::class, 'index']);
             Route::get('/{project}/kanban',[ProjectsController::class, 'kanban']);
-            Route::get('/{project}/kanban/store_task',[ProjectsController::class, 'store_task']);
+            Route::post('/{project}/kanban/store_task',[TasksController::class, 'store']);
+            Route::put('/{project}/kanban/update_task/{id}',[TasksController::class, 'update']);
+            Route::delete('/{project}/kanban/delete_task/{id}',[TasksController::class, 'destroy']);
 
             Route::get('/criar',[ProjectsController::class, 'create']);
             Route::get('/editar/{project}',[ProjectsController::class, 'edit']);

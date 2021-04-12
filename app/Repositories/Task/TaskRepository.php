@@ -1,36 +1,28 @@
 <?php 
-namespace App\Repositories\Organization;
-use App\Models\Organization;
+namespace App\Repositories\Task;
+use App\Models\Tasks;
 
-class OrganizationRepository implements IOrganizationRepository{
+class TaskRepository implements ITaskRepository{
     
-    private $organizationModel;
+    private $taskModel;
 
-    public function __construct(Organization $organizationModel){
-        $this->organizationModel = $organizationModel;
+    public function __construct(Tasks $taskModel){
+        $this->taskModel = $taskModel;
     }
 
-    public function getUserOrganizations(){
-        return Organization::where('user_id',auth()->user()->id)->paginate();
+    public function getByStatus($status,$project_id){
+        return $this->taskModel->where('status',$status)->where('project_id',$project_id)->get();
+      
     }
 
-    public static function getOrganizationBySlug($slug){
-        return Organization::where('slug',$slug)->first();
-    }
-
-    public function storeOrganization($organization){
-        $this->organizationModel->fill($organization);
-        $this->organizationModel->setSlug($organization['name']);
-        $this->organizationModel->save();
+    public function storeTask($task){
+        $this->taskModel->fill($task);
+        $this->taskModel->save();
         return true;
     }
-    public function updateOrganization($organization, $oldOrganization){
-        $oldOrganization->update($organization);
-        return true;
-    }
-    public function deleteteOrganization($id){
-        return $this->organizationModel->find($id)->delete();
-    }
 
+    public function deleteTask($id){
+        return $this->taskModel->find($id)->delete();
+    }
 }
 
