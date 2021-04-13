@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Tasks;
 use Illuminate\Http\Request;
 use App\Http\Requests\RegisterTask;
+use App\Http\Requests\EditTask;
 use App\Repositories\Task\ITaskRepository;
+use App\Repositories\Project\IProjectRepository;
 class TasksController extends Controller
 {
     
@@ -85,9 +87,42 @@ class TasksController extends Controller
      * @param  \App\Models\Tasks  $tasks
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tasks $tasks)
+    public function update(EditTask $request,$slug,$project,$id)
     {
-        //
+        $oldTask = $this->taskRepository->find($id);
+        
+        /*  if($request->user()->cannot('update',$oldOrganization)){
+              
+              abort(403);
+          } */
+  
+          try{
+              $validTask = $request->validated();
+              $this->taskRepository->updateTask($validTask,$oldTask);
+
+              return response(200);
+
+          }catch(\Exception $e){
+              $this->generate_log($e->getMessage());
+              return response(500);
+          }
+    }
+
+    public function update_status(Request $request, $slug,$project)
+    {
+        
+        /*  if($request->user()->cannot('update',$oldOrganization)){
+              
+              abort(403);
+          } */
+          try{
+              $this->taskRepository->updateTaskStatus($request->id,$request->status);
+              return response(200);
+
+          }catch(\Exception $e){
+              $this->generate_log($e->getMessage());
+              return response(500);
+          }
     }
 
     /**

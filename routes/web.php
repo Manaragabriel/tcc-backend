@@ -48,7 +48,8 @@ Route::group(['prefix' => 'painel', 'middleware' => ['auth']],function(){
             Route::get('/',[ProjectsController::class, 'index']);
             Route::get('/{project}/kanban',[ProjectsController::class, 'kanban']);
             Route::post('/{project}/kanban/store_task',[TasksController::class, 'store']);
-            Route::put('/{project}/kanban/update_task/{id}',[TasksController::class, 'update']);
+            Route::post('/{project}/kanban/update_task/{id}',[TasksController::class, 'update']);
+            Route::post('/{project}/kanban/update_status_task',[TasksController::class, 'update_status']);
             Route::delete('/{project}/kanban/delete_task/{id}',[TasksController::class, 'destroy']);
 
             Route::get('/criar',[ProjectsController::class, 'create']);

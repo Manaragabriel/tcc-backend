@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <base href="{{asset('/')}}"/>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}" />
         <title>Gerenciador de Projetos</title>
         <link href="{{asset('assets/plugins/dragula/dragula.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />

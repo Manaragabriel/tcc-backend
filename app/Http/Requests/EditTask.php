@@ -13,7 +13,7 @@ class EditTask extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,16 @@ class EditTask extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title' => 'required|max:256',
+            'description' => 'required',  
+            'user_id' => 'required|exists:users,id',      
+        ];
+    }
+    public function messages(){
+        return [
+            'title.required' => 'O titulo é obrigatório',
+            'description.required' => 'A descrição é obrigatório',
+            'users.required' => 'É obrigatório escolher o responsavel',
         ];
     }
 }

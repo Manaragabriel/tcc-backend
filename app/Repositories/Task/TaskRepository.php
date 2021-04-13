@@ -10,6 +10,10 @@ class TaskRepository implements ITaskRepository{
         $this->taskModel = $taskModel;
     }
 
+    public static function find($task_id){
+        return Tasks::find($task_id);
+    }
+
     public function getByStatus($status,$project_id){
         return $this->taskModel->where('status',$status)->where('project_id',$project_id)->get();
       
@@ -18,6 +22,16 @@ class TaskRepository implements ITaskRepository{
     public function storeTask($task){
         $this->taskModel->fill($task);
         $this->taskModel->save();
+        return true;
+    }
+
+    public function updateTask($task,$oldTask){
+        $oldTask->update($task);
+        return true;
+    }
+
+    public function updateTaskStatus($id, $status){
+        $this->taskModel->where('id',$id)->update(['status' => $status]);
         return true;
     }
 
