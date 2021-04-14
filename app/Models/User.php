@@ -48,4 +48,8 @@ class User extends Authenticatable
     public function organizations(){
         return  $this->hasMany(Organization::class);
     }
+
+    public function organizations_member(){
+        return $this->belongsToMany(Organization::class, 'organizations_members');
+   }
 }

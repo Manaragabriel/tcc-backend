@@ -7,6 +7,7 @@ use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\TeamsController;
 use App\Http\Controllers\ProjectsController;
 use App\Http\Controllers\TasksController;
+use App\Http\Controllers\MembersController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -50,13 +51,19 @@ Route::group(['prefix' => 'painel', 'middleware' => ['auth']],function(){
             Route::post('/{project}/kanban/store_task',[TasksController::class, 'store']);
             Route::post('/{project}/kanban/update_task/{id}',[TasksController::class, 'update']);
             Route::post('/{project}/kanban/update_status_task',[TasksController::class, 'update_status']);
-            Route::delete('/{project}/kanban/delete_task/{id}',[TasksController::class, 'destroy']);
+            Route::delete('/{project}/kanban/delete_task/{user_id}',[TasksController::class, 'destroy']);
 
             Route::get('/criar',[ProjectsController::class, 'create']);
             Route::get('/editar/{project}',[ProjectsController::class, 'edit']);
     
         });
         Route::resource('projetos',ProjectsController::class);
+
+        Route::group(['prefix' => 'membros'], function(){
+            Route::get('/',[MembersController::class, 'index']);
+            Route::post('/store',[MembersController::class, 'store']);
+            Route::delete('/{od}',[MembersController::class, 'destroy']);
+        });
 
     });
 

@@ -340,7 +340,7 @@
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="drop17">
                                                 <a class="dropdown-item open_edit_modal" data-task="{{json_encode($task_done)}}" href="#">Editar</a>
-                                                <form action="/painel/{{request()->slug}}/projetos/{{request()->project }}/kanban/delete_task/{{$task_to_do->id}}" method="POST">
+                                                <form action="/painel/{{request()->slug}}/projetos/{{request()->project }}/kanban/delete_task/{{$task_done->id}}" method="POST">
                                                         {{ method_field('delete') }}
                                                         {{ csrf_field() }}
                                                         <button class="dropdown-item" type="submit">Deletar</button>

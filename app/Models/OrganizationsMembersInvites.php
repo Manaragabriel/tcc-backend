@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class OrganizationsMembers extends Model
+class OrganizationsMembersInvites extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id','organization_id','user_id','type'];
+    protected $fillable = ['id','organization_id','user_id','accepted'];
 }
 

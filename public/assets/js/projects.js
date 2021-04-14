@@ -33,28 +33,3 @@ $('.open_edit_modal').on('click',function(event){
     $('#editTaskModal').modal()
 })
 
-
-$('#update_task').on('submit',function(event){
-    event.preventDefault()
-    const data = $(this).serialize();
-    $('.errors-edit').html('')
-   
-    $.ajax({
-        url: window.location.href + '/update_task/'+ $('#id_edit').val(),
-        method: 'POST',
-        data,
-        dataType: 'json'
-    }).then(function(response){
-        alert('Tarefa editada com sucesso!')
-        window.location.reload();
-    }).catch(function(error){
-        const errorData = error.responseJSON.errors;
-        const keys = Object.keys(error.responseJSON.errors);
-        
-        keys.map(function(key){
-            $(`#${key}-error-edit`).html(errorData[key][0])
-            $(`#${key}-error-edit`).removeClass('d-none')
-        })
-        
-    })
-})
