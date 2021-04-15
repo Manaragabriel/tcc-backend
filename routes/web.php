@@ -8,6 +8,7 @@ use App\Http\Controllers\TeamsController;
 use App\Http\Controllers\ProjectsController;
 use App\Http\Controllers\TasksController;
 use App\Http\Controllers\MembersController;
+use App\Http\Controllers\CallsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -65,6 +66,16 @@ Route::group(['prefix' => 'painel', 'middleware' => ['auth']],function(){
             Route::post('/update_member',[MembersController::class, 'update_member']);
             Route::delete('/{user_id}',[MembersController::class, 'destroy']);
         });
+
+        Route::get('/seus-chamados',[CallsController::class, 'show_user_calls']);
+        
+        Route::group(['prefix' => 'chamados'], function(){
+            Route::get('/',[MembersController::class, 'index']);
+            Route::get('/criar',[CallsController::class, 'create']);
+   
+        });
+        Route::resource('chamados',CallsController::class);
+
 
     });
 

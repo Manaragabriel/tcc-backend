@@ -4,9 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Models\Calls;
 use Illuminate\Http\Request;
+use App\Http\Requests\RegisterCall;
+use App\Repositories\Organization\IOrganizationRepository;
+use App\Repositories\Organization\OrganizationRepository;
+use App\Repositories\Call\ICallRepository;
+use App\Repositories\Call\CallRepository;
 
 class CallsController extends Controller
 {
+
+    private $callRepository;
+    private $organizationRepository;
+
+    public function __construct(ICallRepository $callRepository,IOrganizationRepository $organizationRepository){
+        $this->callRepository = $callRepository;
+        $this->organizationRepository = $organizationRepository;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +37,8 @@ class CallsController extends Controller
      */
     public function create()
     {
-        //
+        return $this->view_organization('system/calls/create');
+
     }
 
     /**
@@ -33,9 +47,18 @@ class CallsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RegisterCall $request,$slug)
     {
-        //
+        try{
+            $validCall = $request->validated();
+            $validCall['user_id'] = auth()->user()->id;
+            $validCall['organization_id'] = $this->organizationRepository->getOrganizationBySlug($slug)->id;
+            $this->callRepository->storeCall($validCall);
+
+            return redirect('painel/'.$slug.'/seus-chamados');
+        }catch(\Exception $e){
+            $this->generate_log($e->getMessage());
+        }
     }
 
     /**
@@ -44,9 +67,13 @@ class CallsController extends Controller
      * @param  \App\Models\Calls  $calls
      * @return \Illuminate\Http\Response
      */
-    public function show(Calls $calls)
+    public function show_user_calls($slug)
     {
-        //
+        $user_id = auth()->user()->id;
+        $organization_id = $this->organizationRepository->getOrganizationBySlug($slug)->id;
+        $data['calls'] =  $this->callRepository->getUserCalls($organization_id,$user_id);
+        return $this->view_organization('system/calls/index',$data);
+
     }
 
     /**

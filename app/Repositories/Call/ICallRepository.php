@@ -1,12 +1,10 @@
 <?php 
-namespace App\Repositories\Organization;
+namespace App\Repositories\Call;
 
 
-interface IOrganizationRepository{
-    public function getUserOrganizations();
-    public function storeOrganization($organization);
-    public function updateOrganization($organization,$oldOrganization);
-    public function deleteteOrganization($id);
+interface ICallRepository{
+    public function storeCall($call);
+   
 }
 
 

@@ -44,6 +44,7 @@
                             <li class="nav-item"><a class="nav-link" href="{{asset('painel/organizacoes')}}">Suas Organizações</a></li>
                             <li class="nav-item"><a class="nav-link" href="../projects/projects-team.html">Suas Equipes</a></li>
                             <li class="nav-item"><a class="nav-link" href="../projects/projects-team.html">Suas Tarefas</a></li>
+                            <li class="nav-item"><a class="nav-link" href="../projects/projects-team.html">Seus Convites</a></li>
                             <li class="nav-item"><a class="nav-link" href="../projects/projects-users.html">Configurações de Perfil</a></li>
                         </ul>
                     </div><!-- end Project -->     
@@ -55,6 +56,7 @@
                         <ul class="nav metismenu">
                             <li class="nav-item"><a class="nav-link" href="/painel/{{request()->slug}}/projetos">Projetos</a></li>
                             <li class="nav-item"><a class="nav-link" href="/painel/{{request()->slug}}/chamados">Chamados</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/painel/{{request()->slug}}/seus-chamados">Seus Chamados</a></li>
                             <li class="nav-item"><a class="nav-link" href="/painel/{{request()->slug}}/equipes">Equipes</a></li>
                             <li class="nav-item"><a class="nav-link" href="/painel/{{request()->slug}}/membros">Membros</a></li>
                         </ul>

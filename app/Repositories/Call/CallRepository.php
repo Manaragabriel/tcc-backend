@@ -1,35 +1,34 @@
 <?php 
-namespace App\Repositories\Organization;
-use App\Models\Organization;
+namespace App\Repositories\Call;
+use App\Models\Calls;
 
-class OrganizationRepository implements IOrganizationRepository{
+class CallRepository implements ICallRepository{
     
-    private $organizationModel;
+    private $callModel;
 
-    public function __construct(Organization $organizationModel){
-        $this->organizationModel = $organizationModel;
+    public function __construct(Calls $callModel){
+        $this->callModel = $callModel;
     }
 
-    public function getUserOrganizations(){
-        return Organization::where('user_id',auth()->user()->id)->paginate();
+    public function getUserCalls($organization_id,$user_id){
+        return Calls::where('user_id',$user_id)->where('organization_id',$organization_id)->paginate();
     }
 
-    public static function getOrganizationBySlug($slug){
-        return Organization::where('slug',$slug)->first();
+    public static function getCallsBySlug($slug){
+        return Calls::where('slug',$slug)->first();
     }
 
-    public function storeOrganization($organization){
-        $this->organizationModel->fill($organization);
-        $this->organizationModel->setSlug($organization['name']);
-        $this->organizationModel->save();
+    public function storeCall($call){
+        $this->callModel->fill($call);
+        $this->callModel->save();
         return true;
     }
-    public function updateOrganization($organization, $oldOrganization){
-        $oldOrganization->update($organization);
+    public function updateCalls($organization, $oldCalls){
+        $oldCalls->update($organization);
         return true;
     }
-    public function deleteteOrganization($id){
-        return $this->organizationModel->find($id)->delete();
+    public function deleteCall($id){
+        return $this->callModel->find($id)->delete();
     }
 
 }
