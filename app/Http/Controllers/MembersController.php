@@ -28,11 +28,16 @@ class MembersController extends Controller
      */
     public function index($slug)
     {
-        $members = User::with('organizations_member')->whereHas('organizations_member',function($query) use ($slug) {
+        $organization = $this->organizationRepository->getOrganizationBySlug($slug);
+
+        $members = User::with(['organizations_member' => function($query) use ($organization) {   
+            $query->where('organizations_members.organization_id', $organization['id'])->select(['type', 'organization_id','organizations_members.user_id']);
+        }])->whereHas('organizations_member',function($query) use ($slug) {
             $query->where('slug',$slug);
         })->get();
+
         $data['members'] = $members;
-        
+       
         return $this->view_organization('system/members/index',$data);
     }
 
@@ -110,6 +115,23 @@ class MembersController extends Controller
         try{
      
             return redirect('painel/'.$slug.'/equipes');
+        }catch(\Exception $e){
+            $this->generate_log($e->getMessage());
+        }
+    }
+
+    public function update_member($slug,Request $request)
+    {
+        $oldTeam = TeamRepository::find($team_id);
+        
+      /*  if($request->user()->cannot('update',$oldOrganization)){
+            
+            abort(403);
+        } */
+
+        try{
+     
+            return response(200);
         }catch(\Exception $e){
             $this->generate_log($e->getMessage());
         }

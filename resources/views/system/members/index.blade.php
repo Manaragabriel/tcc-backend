@@ -46,6 +46,7 @@
                             </div>                            
                         </div><!--end col-->
                     </div><!--end row-->
+
                     <div class="modal fade" id="memberModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg" role="document">
                             <div class="modal-content">
@@ -73,6 +74,40 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="modal fade" id="editMemberModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <form id="edit_member">
+                                    {{csrf_field()}}
+                                    <input type="hidden" name="organization_id" id="organization_id"/>
+                                    <input type="hidden" name="user_id" id="user_id"/>
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Editar membro</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label for="title">Tipo do usuário</label>
+                                            <select  name="type" id="type" class="form-control">
+                                                <option value="1">Funcionário</option>
+                                                <option value="2">Convidado</option>
+                                            </select>
+                                            <span class="text-danger errors d-none" id="type-error" ></span>
+                                        </div>
+                                        
+                                    </div>
+                                
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn store_task_ajax btn-primary">Salvar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="row">
                         @foreach($members as $member)
                             <div class="col-lg-3">
@@ -84,7 +119,7 @@
                                                     <i class="fas fa-ellipsis-v font-20 text-muted"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dLabel1">
-                                                    <a class="dropdown-item" href="{{url()->current()}}/editar/{{$member->id}}">Editar</a> 
+                                                    <button class="dropdown-item open_edit_modal" data-member="{{json_encode($member->organizations_member[0])}}" >Editar</button> 
                                                     <form action="{{url()->current()}}/{{$member->id }}" method="POST">
                                                         {{ method_field('delete') }}
                                                         {{ csrf_field() }}

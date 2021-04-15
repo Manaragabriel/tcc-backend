@@ -62,7 +62,8 @@ Route::group(['prefix' => 'painel', 'middleware' => ['auth']],function(){
         Route::group(['prefix' => 'membros'], function(){
             Route::get('/',[MembersController::class, 'index']);
             Route::post('/store',[MembersController::class, 'store']);
-            Route::delete('/{od}',[MembersController::class, 'destroy']);
+            Route::post('/update_member',[MembersController::class, 'update_member']);
+            Route::delete('/{user_id}',[MembersController::class, 'destroy']);
         });
 
     });

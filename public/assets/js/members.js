@@ -24,29 +24,28 @@ $('#store_member').on('submit',function(event){
 })
 
 $('.open_edit_modal').on('click',function(event){
-    event.preventDefault()
-    const task = $(this).data('task')
-    $('#id_edit').val(task.id);
-    $('#title_edit').val(task.title);
-    $('#description_edit').val(task.description);
-    $('#user_id_edit').val(task.user_id);
-    $('#editTaskModal').modal()
+    event.preventDefault();
+    const member = $(this).data('member');
+    $('#type').val(member.type); 
+    $('#organization_id').val(member.organization_id); 
+    $('#user_id').val(member.user_id); 
+    $('#editMemberModal').modal()
 })
 
 
-$('#update_task').on('submit',function(event){
+$('#uedit_member').on('submit',function(event){
     event.preventDefault()
     const data = $(this).serialize();
     $('.errors-edit').html('')
    
     $.ajax({
-        url: window.location.href + '/update_task/'+ $('#id_edit').val(),
+        url: window.location.href + '/update_member' ,
         method: 'POST',
         data,
         dataType: 'json'
     }).then(function(response){
-        alert('Tarefa editada com sucesso!')
-        window.location.reload();
+        alert('Configurações de membro alteradas com sucesso!')
+      
     }).catch(function(error){
         const errorData = error.responseJSON.errors;
         const keys = Object.keys(error.responseJSON.errors);
