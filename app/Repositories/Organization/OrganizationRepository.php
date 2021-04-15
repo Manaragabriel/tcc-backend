@@ -40,6 +40,12 @@ class OrganizationRepository implements IOrganizationRepository{
         $oldOrganization->update($organization);
         return true;
     }
+
+    public function updateMember($member){
+        OrganizationsMembers::where('organization_id', $member['organization_id'])->where('user_id', $member['user_id'])->first()->update($member);
+        return true;
+    }
+
     public function deleteteOrganization($id){
         return $this->organizationModel->find($id)->delete();
     }

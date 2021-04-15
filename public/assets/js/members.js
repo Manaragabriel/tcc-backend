@@ -33,7 +33,7 @@ $('.open_edit_modal').on('click',function(event){
 })
 
 
-$('#uedit_member').on('submit',function(event){
+$('#edit_member').on('submit',function(event){
     event.preventDefault()
     const data = $(this).serialize();
     $('.errors-edit').html('')

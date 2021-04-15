@@ -122,7 +122,7 @@ class MembersController extends Controller
 
     public function update_member($slug,Request $request)
     {
-        $oldTeam = TeamRepository::find($team_id);
+        $member = $request->all();
         
       /*  if($request->user()->cannot('update',$oldOrganization)){
             
@@ -130,7 +130,7 @@ class MembersController extends Controller
         } */
 
         try{
-     
+            $this->organizationRepository->updateMember($member);
             return response(200);
         }catch(\Exception $e){
             $this->generate_log($e->getMessage());
