@@ -21,6 +21,7 @@ class Controller extends BaseController
     protected function view_organization($view,$data = []){
         $data['organization_menu'] = true;       
         $data['organization_name'] = OrganizationRepository::getOrganizationBySlug(request()->slug)['name'];
+        $data['organization_slug'] = request()->slug;
         return view($view,$data);
     }
 

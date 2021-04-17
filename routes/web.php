@@ -70,7 +70,7 @@ Route::group(['prefix' => 'painel', 'middleware' => ['auth']],function(){
         Route::get('/seus-chamados',[CallsController::class, 'show_user_calls']);
         
         Route::group(['prefix' => 'chamados'], function(){
-            Route::get('/',[MembersController::class, 'index']);
+            Route::get('/',[CallsController::class, 'index']);
             Route::get('/criar',[CallsController::class, 'create']);
    
         });

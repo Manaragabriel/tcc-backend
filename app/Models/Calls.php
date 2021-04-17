@@ -9,5 +9,9 @@ class Calls extends Model
 {
     use HasFactory; 
     use SoftDeletes;
-    protected $fillable = ['title','description','organization_id','user_id', 'type'];
+    protected $fillable = ['title','description','organization_id','user_id', 'type','status'];
+
+    protected $attributes = [
+        'status' => 1,
+    ];
 }

@@ -14,6 +14,10 @@ class CallRepository implements ICallRepository{
         return Calls::where('user_id',$user_id)->where('organization_id',$organization_id)->paginate();
     }
 
+    public function getOrganizationsCalls($organization_id){
+        return Calls::where('organization_id',$organization_id)->paginate();
+    }
+
     public static function getCallsBySlug($slug){
         return Calls::where('slug',$slug)->first();
     }

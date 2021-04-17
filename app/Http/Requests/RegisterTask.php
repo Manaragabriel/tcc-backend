@@ -26,7 +26,7 @@ class RegisterTask extends FormRequest
         return [
             'title' => 'required|max:256',
             'description' => 'required',  
-            'user_id' => 'required|exists:users,id',      
+            'user_id' => 'nullable|exists:users,id',      
         ];
     }
     public function messages(){
