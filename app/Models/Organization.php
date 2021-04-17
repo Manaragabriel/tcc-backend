@@ -31,4 +31,7 @@ class Organization extends Model
    public function members(){
         return $this->belongsToMany(User::class, 'organizations_members');
    }
+   public function invites(){
+    return $this->belongsToMany(User::class, 'organizations_members_invites');
+}
 }

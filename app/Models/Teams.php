@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Organization;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
+use App\Models\User;
 
 class Teams extends Model
 {
@@ -28,6 +28,10 @@ class Teams extends Model
             $slug .= '-'.( count($verify_slug) + 1 );
         }
         $this->slug = $slug;
+   }
+   public function members(){
+        return  $this->belongsToMany(User::class,'teams_members','team_id');
+
    }
 
 }

@@ -18,6 +18,10 @@ class TaskRepository implements ITaskRepository{
         return $this->taskModel->where('status',$status)->where('project_id',$project_id)->get();
       
     }
+    public function getByUser($user_id){
+        return $this->taskModel->with('project')->where('user_id',$user_id)->paginate();
+      
+    }
 
     public function storeTask($task){
         $this->taskModel->fill($task);

@@ -11,6 +11,8 @@ use App\Repositories\Call\ICallRepository;
 use App\Repositories\Call\CallRepository;
 use App\Models\Organization;
 use App\Repositories\Project\IProjectRepository;
+
+
 class CallsController extends Controller
 {
 
@@ -105,6 +107,21 @@ class CallsController extends Controller
     public function update(Request $request, Calls $calls)
     {
         //
+    }
+
+    public function update_status(Request $request, $slug, $call_id)
+    {
+        try{
+            $oldCall = $this->callRepository->getCall($call_id);
+            $validCall = [
+                'status' => $request->status
+            ];
+            $this->callRepository->updateCall($validCall,$oldCall);
+
+            return response(200);
+        }catch(\Exception $e){
+            $this->generate_log($e->getMessage());
+        }
     }
 
     /**

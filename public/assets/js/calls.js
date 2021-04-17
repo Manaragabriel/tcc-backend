@@ -44,3 +44,30 @@ $('#store_task').on('submit',function(event){
     })
 })
 
+
+$('#finish_task').on('click',function(event){
+    const data = selectedCall;
+    data.status = 3;
+    $.ajax({
+        url: window.location.href + '/update_status/'+data.id,
+        method: 'POST',
+        data,
+        dataType: 'json',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    }).then(function(response){
+        alert('Chamado encerrado com sucesso!')
+        window.location.reload();
+    }).catch(function(error){
+        const errorData = error.responseJSON.errors;
+        const keys = Object.keys(error.responseJSON.errors);
+        
+        keys.map(function(key){
+            $(`#${key}-error`).html(errorData[key][0])
+            $(`#${key}-error`).removeClass('d-none')
+        })
+        
+    })
+})
+

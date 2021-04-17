@@ -21,7 +21,12 @@ class TeamRepository implements ITeamRepository{
     public static function getTeamBySlug($slug){
         return Teams::where('slug',$slug)->first();
     }
-
+    public function getByUser($user_id){
+        return $this->teamModel->with('members')->whereHas('members', function($query) use($user_id){
+            $query->where('teams_members.user_id',$user_id);
+        })->paginate();
+      
+    }
     public static function find($team_id){
         return Teams::find($team_id);
     }

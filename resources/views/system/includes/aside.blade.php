@@ -42,10 +42,10 @@
                         <ul class="nav">
                             <li class="nav-item"><a class="nav-link" href="../projects/projects-index.html">Dashboard</a></li>
                             <li class="nav-item"><a class="nav-link" href="{{asset('painel/organizacoes')}}">Suas Organizações</a></li>
-                            <li class="nav-item"><a class="nav-link" href="../projects/projects-team.html">Suas Equipes</a></li>
-                            <li class="nav-item"><a class="nav-link" href="../projects/projects-team.html">Suas Tarefas</a></li>
-                            <li class="nav-item"><a class="nav-link" href="../projects/projects-team.html">Seus Convites</a></li>
-                            <li class="nav-item"><a class="nav-link" href="../projects/projects-users.html">Configurações de Perfil</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/painel/suas-equipes">Suas Equipes</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/painel/suas-tarefas">Suas Tarefas</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/painel/seus-convites">Seus Convites</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/painel/configuracoes">Configurações de Perfil</a></li>
                         </ul>
                     </div><!-- end Project -->     
 

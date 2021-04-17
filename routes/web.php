@@ -34,6 +34,9 @@ Route::group(['prefix' => 'painel', 'middleware' => ['auth']],function(){
 
     });
     Route::resource('organizacoes',OrganizationController::class);
+    Route::get('suas-tarefas', [TasksController::class, 'show_user_tasks']);
+    Route::get('suas-equipes', [TeamsController::class, 'show_user_teams']);
+    Route::get('seus-convites', [OrganizationController::class, 'show_user_invites']);
 
     Route::group(['prefix' => '{slug}'],function(){
         Route::get('/', [DashboardController::class, 'organization']);
@@ -72,7 +75,7 @@ Route::group(['prefix' => 'painel', 'middleware' => ['auth']],function(){
         Route::group(['prefix' => 'chamados'], function(){
             Route::get('/',[CallsController::class, 'index']);
             Route::get('/criar',[CallsController::class, 'create']);
-   
+            Route::post('/update_status/{call_id}',[CallsController::class, 'update_status']);
         });
         Route::resource('chamados',CallsController::class);
 

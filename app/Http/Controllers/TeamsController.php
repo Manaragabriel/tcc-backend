@@ -76,7 +76,11 @@ class TeamsController extends Controller
     {
       
     }
-
+    public function show_user_teams()
+    {
+        $data['teams'] =  $this->teamRepository->getByUser(auth()->user()->id);
+        return $this->view_default('system/users/show_user_teams',$data);
+    }
     /**
      * Show the form for editing the specified resource.
      *

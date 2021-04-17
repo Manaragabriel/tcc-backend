@@ -78,7 +78,11 @@ class OrganizationController extends Controller
     {
         //
     }
-
+    public function show_user_invites()
+    {
+        $data['organizations'] =  $this->organizationRepository->getUserInvites(auth()->user()->id);
+        return $this->view_default('system/users/show_user_invites',$data);
+    }
     /**
      * Show the form for editing the specified resource.
      *

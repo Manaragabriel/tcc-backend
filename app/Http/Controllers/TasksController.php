@@ -69,6 +69,12 @@ class TasksController extends Controller
         //
     }
 
+    public function show_user_tasks()
+    {
+        $data['tasks'] =  $this->taskRepository->getByUser(auth()->user()->id);
+        return $this->view_default('system/users/show_user_tasks',$data);
+    }
+ 
     /**
      * Show the form for editing the specified resource.
      *
