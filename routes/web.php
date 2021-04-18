@@ -37,6 +37,8 @@ Route::group(['prefix' => 'painel', 'middleware' => ['auth']],function(){
     Route::get('suas-tarefas', [TasksController::class, 'show_user_tasks']);
     Route::get('suas-equipes', [TeamsController::class, 'show_user_teams']);
     Route::get('seus-convites', [OrganizationController::class, 'show_user_invites']);
+    Route::get('seus-convites/aceitar/{invite_id}', [OrganizationController::class, 'accept_user_invite']);
+    Route::get('seus-convites/recusar/{invite_id}', [OrganizationController::class, 'reject_user_invite']);
 
     Route::group(['prefix' => '{slug}'],function(){
         Route::get('/', [DashboardController::class, 'organization']);

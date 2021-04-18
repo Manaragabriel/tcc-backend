@@ -26,7 +26,23 @@ class OrganizationRepository implements IOrganizationRepository{
     public function getUserInvites($user_id){
         return Organization::with('invites')->whereHas('invites', function($query) use($user_id){
             $query->where('organizations_members_invites.user_id',$user_id);
+            $query->where('organizations_members_invites.accepted',null);
         })->paginate();
+    }
+
+    public function acceptUserInvite($invite_id){
+        $invite = OrganizationsMembersInvites::find($invite_id);
+        OrganizationsMembers::create([
+            'organization_id' => $invite['organization_id'],
+            'user_id' => $invite['user_id'],
+        ]);
+        $invite->update(['accepted' => true]);
+        return true;
+    }
+
+    public function rejectUserInvite($invite_id){
+        $invite = OrganizationsMembersInvites::find($invite_id)->update(['accepted' => false]);
+        return true;
     }
 
     public function inviteMember($user,$organization){

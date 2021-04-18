@@ -10,5 +10,8 @@ class OrganizationsMembers extends Model
     use HasFactory;
 
     protected $fillable = ['id','organization_id','user_id','type'];
+    protected $attributes = [
+        'type' => 0
+    ];
 }
 

@@ -32,6 +32,6 @@ class Organization extends Model
         return $this->belongsToMany(User::class, 'organizations_members');
    }
    public function invites(){
-    return $this->belongsToMany(User::class, 'organizations_members_invites');
+    return $this->belongsToMany(User::class, 'organizations_members_invites')->withPivot('id');
 }
 }

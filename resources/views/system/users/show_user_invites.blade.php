@@ -61,8 +61,8 @@
                                                
                                             </p>
                                            
-                                            <a type="button" class="btn btn-gradient-secondary" href="">Recusar</a>
-                                            <a type="button" class="btn btn-gradient-primary" href="">Aceitar</a>
+                                            <a type="button" class="btn btn-gradient-secondary" href="/painel/seus-convites/recusar/{{$organization->invites[0]->pivot->id}}">Recusar</a>
+                                            <a type="button" class="btn btn-gradient-primary" href="/painel/seus-convites/aceitar/{{$organization->invites[0]->pivot->id}}">Aceitar</a>
                                               
                                         </div>                                                                      
                                     </div><!--end card-body-->

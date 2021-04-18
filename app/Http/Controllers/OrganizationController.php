@@ -81,7 +81,20 @@ class OrganizationController extends Controller
     public function show_user_invites()
     {
         $data['organizations'] =  $this->organizationRepository->getUserInvites(auth()->user()->id);
+       
         return $this->view_default('system/users/show_user_invites',$data);
+    }
+
+    public function accept_user_invite($invite_id)
+    {
+        $this->organizationRepository->acceptUserInvite($invite_id);
+        return redirect('painel/seus-convites');
+    }
+
+    public function reject_user_invite($invite_id)
+    {
+        $this->organizationRepository->rejectUserInvite($invite_id);
+        return redirect('painel/seus-convites');
     }
     /**
      * Show the form for editing the specified resource.
