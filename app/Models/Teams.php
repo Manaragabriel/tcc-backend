@@ -30,7 +30,7 @@ class Teams extends Model
         $this->slug = $slug;
    }
    public function members(){
-        return  $this->belongsToMany(User::class,'teams_members','team_id');
+        return  $this->belongsToMany(User::class,'teams_members','teams_id');
 
    }
 

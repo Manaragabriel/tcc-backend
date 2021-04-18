@@ -13,6 +13,8 @@ use App\Repositories\Task\ITaskRepository;
 use App\Repositories\Task\TaskRepository;
 use App\Repositories\Call\ICallRepository;
 use App\Repositories\Call\CallRepository;
+use App\Repositories\User\IUserRepository;
+use App\Repositories\User\UserRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -28,6 +30,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(IProjectRepository::class, ProjectRepository::class);
         $this->app->bind(ICallRepository::class,CallRepository::class);
         $this->app->bind(ITaskRepository::class, TaskRepository::class);
+        $this->app->bind(IUserRepository::class, UserRepository::class);
     }
 
     /**

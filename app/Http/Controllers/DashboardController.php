@@ -13,4 +13,7 @@ class DashboardController extends Controller
     public function organization(){
         return $this->view_organization('system/dashboard/index');
     }
+    public function settings(){
+        
+    }
 }

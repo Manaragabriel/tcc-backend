@@ -9,6 +9,7 @@ use App\Http\Controllers\ProjectsController;
 use App\Http\Controllers\TasksController;
 use App\Http\Controllers\MembersController;
 use App\Http\Controllers\CallsController;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,6 +35,10 @@ Route::group(['prefix' => 'painel', 'middleware' => ['auth']],function(){
 
     });
     Route::resource('organizacoes',OrganizationController::class);
+   
+    Route::get('configuracoes', [UserController::class, 'settings']);
+    Route::put('configuracoes/update', [UserController::class, 'update_settings']);
+
     Route::get('suas-tarefas', [TasksController::class, 'show_user_tasks']);
     Route::get('suas-equipes', [TeamsController::class, 'show_user_teams']);
     Route::get('seus-convites', [OrganizationController::class, 'show_user_invites']);
