@@ -10,10 +10,10 @@
                                     <ol class="breadcrumb">
                                        
                                         <li class="breadcrumb-item"><a href="javascript:void(0);">Painel</a></li>
-                                        <li class="breadcrumb-item active">Suas equipes</li>
+                                        <li class="breadcrumb-item active">Membros da equipe </li>
                                     </ol>
                                 </div>
-                                <h4 class="page-title">Suas Equipes</h4>
+                                <h4 class="page-title">Membros da equipe</h4>
                             </div><!--end page-title-box-->
                         </div><!--end col-->
                     </div>
@@ -22,7 +22,7 @@
                         <div class="col-lg-6">
                             <ul class="list-inline">
                                 <li class="list-inline-item">
-                                    <h5 class="mt-0">Lista com todas as equipes de {{$organization_name}}
+                                    <h5 class="mt-0">Lista com todos os membros da equipe
                                 </li>
                             </ul>
                         </div><!--end col-->
@@ -40,15 +40,49 @@
                                     </li>
                                    
                                     <li class="list-inline-item">
-                                        <a type="button" class="btn btn-gradient-primary" href="{{url()->current()}}/criar">Criar uma equipe</a>
+                                        <button type="button" class="btn btn-gradient-primary"  data-toggle="modal" data-target="#memberModal">Adicionar um membro</button>
                                     </li>
                                 </ul>
                             </div>                            
                         </div><!--end col-->
                     </div><!--end row-->
-                    
+
+                    <div class="modal fade" id="memberModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <form id="store_member">
+                                    {{csrf_field()}}
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Adicionar um membro</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label for="title">Usuário</label>
+                                            <select type="text" name="user_id" id="user_id" class="form-control">
+                                                @foreach($members_organization as $member)
+                                                    <option value="{{$member->id}}">{{$member->name}}</option>
+                                                @endforeach
+                                            </select>
+                                            <span class="text-danger errors d-none" id="email-error" ></span>
+                                        </div>
+                                        
+                                    </div>
+                                
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn store_task_ajax btn-primary">Adicionar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+               
+
                     <div class="row">
-                        @foreach($teams as $team)
+                        @foreach($members as $member)
                             <div class="col-lg-3">
                                 <div class="card">
                                     <div class="card-body">                                        
@@ -58,11 +92,11 @@
                                                     <i class="fas fa-ellipsis-v font-20 text-muted"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dLabel1">
-                                                    <a class="dropdown-item" href="{{url()->current()}}/editar/{{$team->id}}">Editar</a> 
-                                                    <form action="{{url()->current()}}/{{$team->id }}" method="POST">
+                                                   
+                                                    <form action="{{url()->current()}}/delete_member/{{$member->id }}" method="POST">
                                                         {{ method_field('delete') }}
                                                         {{ csrf_field() }}
-                                                        <button class="dropdown-item btn"  type="submit">Deletar</button>
+                                                        <button class="dropdown-item btn"  type="submit">Remover</button>
                                                     </form>
                                                 </div>
                                             </div>
@@ -70,11 +104,11 @@
                                         <div class="text-center project-card">
                                             <img src="../assets/images/widgets/p-1.svg" alt="" height="80" class="mx-auto d-block mb-3"> 
                        
-                                            <a class="project-title h3 " href="/painel/{{$team->slug}}">{{$team->name}}</a>
+                                            <a class="project-title h3 " href="/painel/">{{$member->name}}</a>
                                             <p class="text-muted"><span class="text-secondary font-14">
                                                
                                             </p>
-                                            <a type="button" class="btn btn-gradient-primary" href="/painel/{{request()->slug}}/equipes/{{$team->slug}}/membros">Ver equipe</a>
+                                            
 
                                               
                                         </div>                                                                      
@@ -90,4 +124,7 @@
 
 
                 </div>
+@endsection
+@section('scripts')
+    <script src="{{asset('assets/js/members_teams.js')}}"></script>
 @endsection

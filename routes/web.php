@@ -45,6 +45,10 @@ Route::group(['prefix' => 'painel', 'middleware' => ['auth']],function(){
 
         Route::group(['prefix' => 'equipes'], function(){
             Route::get('/',[TeamsController::class, 'index']);
+            Route::get('/{team_slug}/membros',[TeamsController::class, 'members']);
+            Route::post('/{team_slug}/membros/store_member',[TeamsController::class, 'store_member']);
+            Route::delete('/{team_slug}/membros/delete_member/{member_id}',[TeamsController::class, 'delete_member']);
+
             Route::get('/criar',[TeamsController::class, 'create']);
             Route::get('/editar/{team}',[TeamsController::class, 'edit']);
     

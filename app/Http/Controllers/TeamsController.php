@@ -9,7 +9,8 @@ use App\Http\Requests\RegisterTeam;
 use App\Http\Requests\EditTeam;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Teams;
-
+use App\Models\User;
+use App\Models\Organization;
 class TeamsController extends Controller
 {
     private $teamRepository;
@@ -34,6 +35,21 @@ class TeamsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function members($slug,$team_slug)
+    {
+        $team = $this->teamRepository->getTeamBySlug($team_slug);
+
+        $members = User::with(['teams_members' => function($query) use ($team) {   
+            $query->where('teams_members.teams_id', $team['id'])->select([ 'teams_id','teams_members.user_id']);
+        }])->whereHas('teams_members',function($query) use ($team_slug) {
+            $query->where('slug',$team_slug);
+        })->get();
+
+        $data['members'] = $members;
+        $data['members_organization'] =  Organization::with('members')->where('slug',$slug)->first()->members;
+        return $this->view_organization('system/teams/members',$data);
+    }
+
     public function create()
     {
         return $this->view_organization('system/teams/create');
@@ -63,6 +79,29 @@ class TeamsController extends Controller
             return redirect('painel/'.$organization_slug.'/equipes');
         }catch(\Exception $e){
             $this->generate_log($e->getMessage());
+        }
+    }
+    public function store_member(Request $request,$slug,$team_slug){
+        try{
+            $user_id = $request->user_id;
+            $team = $this->teamRepository->getTeamBySlug($team_slug);
+            $this->teamRepository->addMember($user_id,$team->id);
+
+            return response(200);
+        }catch(\Exception $e){
+            $this->generate_log($e->getMessage());
+
+        }
+    }
+    public function delete_member(Request $request,$slug,$team_slug, $member_id){
+        try{
+            $team = $this->teamRepository->getTeamBySlug($team_slug);
+            $this->teamRepository->deleteMember($member_id,$team->id);
+
+            return  redirect('painel/'.$slug.'/equipes/'.$team_slug.'/membros');
+        }catch(\Exception $e){
+            $this->generate_log($e->getMessage());
+
         }
     }
 

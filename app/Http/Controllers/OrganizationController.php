@@ -26,6 +26,8 @@ class OrganizationController extends Controller
     public function index()
     {
         $data['organizations'] = $this->organizationRepository->getUserOrganizations();
+        $data['organizations_is_member'] =  $this->organizationRepository->getOrganizationsByMember(auth()->user()->id);
+        
         return $this->view_default('system/organizations/index',$data);
 
     }

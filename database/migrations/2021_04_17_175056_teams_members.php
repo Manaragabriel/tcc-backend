@@ -15,8 +15,8 @@ class TeamsMembers extends Migration
     {
         Schema::create('teams_members', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('team_id')->nullable();
-            $table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade');   
+            $table->unsignedBigInteger('teams_id')->nullable();
+            $table->foreign('teams_id')->references('id')->on('teams')->onDelete('cascade');   
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade'); 
             $table->softDeletes();

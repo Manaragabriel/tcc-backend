@@ -15,13 +15,16 @@ class Controller extends BaseController
     protected function view_default($view,$data = []){
         $data['organization_menu'] = false;
         $data['organization_name'] = '';
+        $data['user_type'] = null;
         return view($view,$data);
     }
 
     protected function view_organization($view,$data = []){
         $data['organization_menu'] = true;       
-        $data['organization_name'] = OrganizationRepository::getOrganizationBySlug(request()->slug)['name'];
+        $data['organization'] = OrganizationRepository::getOrganizationBySlug(request()->slug);
+        $data['organization_name'] = $data['organization']->name;
         $data['organization_slug'] = request()->slug;
+        $data['user_type'] = OrganizationRepository::getUserType(auth()->user(),$data['organization']);
         return view($view,$data);
     }
 

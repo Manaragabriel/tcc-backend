@@ -55,10 +55,16 @@
                         </div>
                         <ul class="nav metismenu">
                             <li class="nav-item"><a class="nav-link" href="/painel/{{request()->slug}}/projetos">Projetos</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/painel/{{request()->slug}}/chamados">Chamados</a></li>
+                            @if($user_type != 2)
+                                <li class="nav-item"><a class="nav-link" href="/painel/{{request()->slug}}/chamados">Chamados</a></li>
+                            @endif
                             <li class="nav-item"><a class="nav-link" href="/painel/{{request()->slug}}/seus-chamados">Seus Chamados</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/painel/{{request()->slug}}/equipes">Equipes</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/painel/{{request()->slug}}/membros">Membros</a></li>
+                            @if($user_type != 2)
+                                <li class="nav-item"><a class="nav-link" href="/painel/{{request()->slug}}/equipes">Equipes</a></li>
+                            @endif
+                            @if($user_type != 2)
+                                <li class="nav-item"><a class="nav-link" href="/painel/{{request()->slug}}/membros">Membros</a></li>
+                            @endif
                         </ul>
                     </div><!-- end Crypto -->
                     

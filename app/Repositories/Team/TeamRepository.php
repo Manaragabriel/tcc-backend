@@ -1,6 +1,7 @@
 <?php 
 namespace App\Repositories\Team;
 use App\Models\Teams;
+use App\Models\TeamsMembers;
 use App\Repositories\Organization\OrganizationRepository;
 
 class TeamRepository implements ITeamRepository{
@@ -37,6 +38,17 @@ class TeamRepository implements ITeamRepository{
         $this->teamModel->setSlug($team['name']);
         $this->teamModel->save();
         return true;
+    }
+    public function addMember($user_id,$team_id){
+        return TeamsMembers::create([
+            'user_id' => $user_id,
+            'teams_id' => $team_id
+        ]);
+       
+    }
+    public function deleteMember($user_id,$team_id){
+        return TeamsMembers::where('user_id', $user_id)->where('teams_id' , $team_id)->delete();
+       
     }
     public function updateTeam($team, $oldTeam){
        

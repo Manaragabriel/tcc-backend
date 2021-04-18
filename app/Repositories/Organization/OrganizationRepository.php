@@ -23,6 +23,15 @@ class OrganizationRepository implements IOrganizationRepository{
         return Organization::where('slug',$slug)->first();
     }
 
+    public function getOrganizationsByMember($user_id){
+        return Organization::with('members')->whereHas('members', function($query) use($user_id){
+            $query->where('organizations_members.user_id',$user_id);
+        })->paginate();
+    }
+    public static function getUserType($user,$organization){
+        $member = OrganizationsMembers::where('user_id',$user->id)->where('organization_id',$organization['id'])->first();
+        return isset($member->type) ? $member->type : null;
+    }
     public function getUserInvites($user_id){
         return Organization::with('invites')->whereHas('invites', function($query) use($user_id){
             $query->where('organizations_members_invites.user_id',$user_id);

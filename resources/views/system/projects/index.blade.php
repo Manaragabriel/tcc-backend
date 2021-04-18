@@ -10,10 +10,10 @@
                                     <ol class="breadcrumb">
                                        
                                         <li class="breadcrumb-item"><a href="javascript:void(0);">Painel</a></li>
-                                        <li class="breadcrumb-item active">Suas projetos</li>
+                                        <li class="breadcrumb-item active">Projetos de {{$organization_name}}</li>
                                     </ol>
                                 </div>
-                                <h4 class="page-title">Seus Projetos</h4>
+                                <h4 class="page-title">Projetos de {{$organization_name}}</h4>
                             </div><!--end page-title-box-->
                         </div><!--end col-->
                     </div>

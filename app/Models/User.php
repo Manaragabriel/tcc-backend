@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Organization;
+use App\Models\Teams;
 use App\Models\OrganizationsMembers;
 class User extends Authenticatable
 {
@@ -52,5 +53,8 @@ class User extends Authenticatable
 
     public function organizations_member(){
         return $this->belongsToMany(Organization::class, 'organizations_members');
-   }
+    }
+    public function teams_members(){
+        return $this->belongsToMany(Teams::class, 'teams_members');
+    }
 }
