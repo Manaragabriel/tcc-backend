@@ -50,16 +50,9 @@
                             <div class="col-lg-3">
                                 <div class="card">
                                     <div class="card-body">                                        
-                                        <div class=" d-flex justify-content-end">                                        
-                                            <div class="dropdown d-inline-block">
-                                                <a class="nav-link dropdown-toggle arrow-none" id="dLabel1" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                                                    <i class="fas fa-ellipsis-v font-20 text-muted"></i>
-                                                </a>
-                                            
-                                            </div>
-                                        </div> 
+                                        
                                         <div class="text-center project-card">
-                                            <img src="../assets/images/widgets/p-1.svg" alt="" height="80" class="mx-auto d-block mb-3"> 
+                                            <img src="/storage/teams/{{$team->image}}" alt="" height="80" class="mx-auto d-block mb-3"> 
                        
                                             <a class="project-title h3 " href="/painel/{{$team->slug}}">{{$team->name}}</a>
                                             <p class="text-muted"><span class="text-secondary font-14">

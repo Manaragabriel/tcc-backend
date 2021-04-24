@@ -6,7 +6,7 @@
             <div class="card mt-5 p-3 text-center">
                 <div>
                     
-                    <img class="img-dashboard" src="/storage/users/user.png"/>
+                    <img class="img-dashboard" src="/storage/users/{{auth()->user()->avatar}}"/>
                     <h3 class="text-center ">Bem vindo ao sistema {{auth()->user()->name}}</h3>
                     <p class="text-center">Utilize o menu lateral para navegar pelo sistema</p>
                 </div>

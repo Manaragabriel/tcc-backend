@@ -36,7 +36,7 @@
                                                 </div>
 
                                                 <div class="form-group ">
-                                                    <label for="cnpj" class="col-form-label">CNPJTipo do chamado*</label>
+                                                    <label for="cnpj" class="col-form-label">Tipo do chamado*</label>
                                                     
                                                     <select class="form-control" name="type" type="text" value="{{old('type')}}" id="type">
                                                         <option value="1">Suporte</option>
@@ -60,8 +60,8 @@
                                                 </div>
 
                                                 <div class="form-group text-right">
-                                                    <div class="col-3">
-                                                        <input type="submit" class="form-control w-50" value="Enviar">
+                                                    <div class="col-lg-3">
+                                                        <input type="submit" class="form-control w-50 btn-gradient-primary" value="Enviar">
 
                                                     </div>
                                                 </div>

@@ -29,7 +29,7 @@
 
                         <div class="col-lg-6 text-right">
                             <div class="text-right">
-                                <ul class="list-inline">
+                                <ul class="list-inline mr-0">
                                     <li class="list-inline-item">
                                         <div class="input-group">                               
                                             <input type="text" id="example-input1-group2" name="example-input1-group2" class="form-control" placeholder="Pesquisar">
@@ -40,7 +40,7 @@
                                     </li>
                                    
                                     <li class="list-inline-item">
-                                        <button type="button" class="btn btn-gradient-primary"  data-toggle="modal" data-target="#memberModal">Adicionar um membro</button>
+                                        <button type="button" class="btn btn-gradient-primary mt-2 mt-lg-0"  data-toggle="modal" data-target="#memberModal">Adicionar um membro</button>
                                     </li>
                                 </ul>
                             </div>                            
@@ -129,7 +129,7 @@
                                             </div>
                                         </div> 
                                         <div class="text-center project-card">
-                                            <img src="../assets/images/widgets/p-1.svg" alt="" height="80" class="mx-auto d-block mb-3"> 
+                                            <img src="/storage/users/{{$member->avatar}}" alt="" height="80" class="mx-auto d-block mb-3"> 
                        
                                             <a class="project-title h3 " href="/painel/">{{$member->name}}</a>
                                             <p class="text-muted"><span class="text-secondary font-14">

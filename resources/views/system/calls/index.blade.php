@@ -70,7 +70,7 @@
                                                 
                                                     <td>{{$call->title}}</td>
                                                     <td  class="d-none d-lg-table-cell">{{$call->description}}</td>
-                                                    <td  class="d-none d-lg-table-cell"><span class="badge badge-md badge-boxed  badge-soft-success">{{show_call_status($call->status)}}</span></td>
+                                                    <td  class="d-none d-lg-table-cell">{!! show_call_status($call->status) !!}</td>
                                                     <td>
                                                         <button class="btn btn-primary open_call_modal" data-call="{{json_encode($call)}}" >Ver</button>
                                                     </td>
@@ -197,10 +197,10 @@
                         </div>
 
 
+                        <div class="d-none" id="organization_slug" data-slug="{{$organization_slug}}"></div>
 
                 </div>
 @endsection
-<div class="d-none" id="organization_slug" data-slug="{{$organization_slug}}"></div>
 @section('scripts')
     <script src="{{asset('assets/js/calls.js')}}"></script>
 @endsection

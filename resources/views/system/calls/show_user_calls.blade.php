@@ -70,7 +70,7 @@
                                                 
                                                     <td>{{$call->title}}</td>
                                                     <td  class="d-none d-lg-table-cell">{{$call->description}}</td>
-                                                    <td  class="d-none d-lg-table-cell"><span class="badge badge-md badge-boxed  badge-soft-success">{{$call->type}}</span></td>
+                                                    <td  class="d-none d-lg-table-cell">{!! show_call_type($call->type) !!}</td>
                                                     <td>
                                                         <button class="btn btn-primary open_call_modal" data-call="{{json_encode($call)}}" >Ver</button>
                                                     </td>

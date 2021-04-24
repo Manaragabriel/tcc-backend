@@ -30,7 +30,7 @@
                         <div class="col-lg-6 text-right">
                             <div class="text-right">
                                 <ul class="list-inline">
-                                    <li class="list-inline-item">
+                                    <li class="list-inline-item mr-0">
                                         <div class="input-group">                               
                                             <input type="text" id="example-input1-group2" name="example-input1-group2" class="form-control" placeholder="Pesquisar">
                                             <span class="input-group-append">
@@ -40,7 +40,7 @@
                                     </li>
                                    
                                     <li class="list-inline-item">
-                                        <a type="button" class="btn btn-gradient-primary" href="{{url()->current()}}/criar">Criar uma equipe</a>
+                                        <a type="button" class="btn btn-gradient-primary mt-2 mt-lg-0" href="{{url()->current()}}/criar">Criar uma equipe</a>
                                     </li>
                                 </ul>
                             </div>                            
@@ -68,7 +68,7 @@
                                             </div>
                                         </div> 
                                         <div class="text-center project-card">
-                                            <img src="../assets/images/widgets/p-1.svg" alt="" height="80" class="mx-auto d-block mb-3"> 
+                                            <img src="/storage/teams/{{$team->image}}" alt="" height="80" class="mx-auto d-block mb-3"> 
                        
                                             <a class="project-title h3 " href="/painel/{{$team->slug}}">{{$team->name}}</a>
                                             <p class="text-muted"><span class="text-secondary font-14">

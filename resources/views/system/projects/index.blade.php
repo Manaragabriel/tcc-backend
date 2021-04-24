@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container-fluid">
-                    <!-- Page-Title -->
+                  
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="page-title-box">
@@ -14,10 +14,10 @@
                                     </ol>
                                 </div>
                                 <h4 class="page-title">Projetos de {{$organization_name}}</h4>
-                            </div><!--end page-title-box-->
-                        </div><!--end col-->
+                            </div>
+                        </div>
                     </div>
-                    <!-- end page title end breadcrumb -->
+                
                     <div class="row">
                         <div class="col-lg-6">
                             <ul class="list-inline">
@@ -25,12 +25,12 @@
                                     <h5 class="mt-0">Lista com todas os projetos
                                 </li>
                             </ul>
-                        </div><!--end col-->
+                        </div>
 
                         <div class="col-lg-6 text-right">
                             <div class="text-right">
                                 <ul class="list-inline">
-                                    <li class="list-inline-item">
+                                    <li class="list-inline-item mr-0">
                                         <div class="input-group">                               
                                             <input type="text" id="example-input1-group2" name="example-input1-group2" class="form-control" placeholder="Pesquisar">
                                             <span class="input-group-append">
@@ -40,7 +40,7 @@
                                     </li>
                                    
                                     <li class="list-inline-item">
-                                        <a type="button" class="btn btn-gradient-primary" href="{{asset('painel/'.request()->slug.'/projetos/criar')}}">Criar um projeto</a>
+                                        <a type="button" class="btn btn-gradient-primary mt-2 mt-lg-0" href="{{asset('painel/'.request()->slug.'/projetos/criar')}}">Criar um projeto</a>
                                     </li>
                                 </ul>
                             </div>                            
@@ -68,7 +68,7 @@
                                             </div>
                                         </div> 
                                         <div class="text-center project-card">
-                                            <img src="../assets/images/widgets/p-1.svg" alt="" height="80" class="mx-auto d-block mb-3"> 
+                                            <img src="/storage/projects/{{$project->image}}" alt="" height="80" class="mx-auto d-block mb-3"> 
                        
                                             <a class="project-title h3 " href="/painel/{{$project->slug}}">{{$project->title}}</a>
                                             <p class="text-muted"><span class="text-secondary font-14">

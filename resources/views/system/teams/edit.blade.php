@@ -50,7 +50,7 @@
 
                                                 <div class="form-group text-right">
                                                     <div class="col-3">
-                                                        <input type="submit" class="form-control w-50" value="Enviar">
+                                                        <input type="submit" class="form-control w-50 btn-gradient-primary" value="Enviar">
 
                                                     </div>
                                                 </div>

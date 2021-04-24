@@ -3,6 +3,8 @@ var selectedCall = {};
 $('.open_call_modal').on('click',function(event){
     event.preventDefault();
     const call = $(this).data('call');
+    call.status = call.status == 1 ? 'Em aberto': 'Encerrado';
+    call.type = call.type == 1 ? 'Suporte': 'Alteração';
     $('#title-call').html(call.title); 
     $('#description-call').html(call.description); 
     $('#status-call').html(call.status);
