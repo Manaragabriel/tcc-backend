@@ -16,6 +16,10 @@ class TeamRepository implements ITeamRepository{
         $this->teamModel =  $this->teamModel->whereHas('organization', function($query) use($organization_slug){
             $query->where('organizations.slug', $organization_slug);
         });
+        $search = request()->input('pesquisar');
+        $this->teamModel = $this->teamModel->when($search, function($query) use($search){
+            return $query->where('name','LIKE','%'.$search.'%');
+        });
         return $this->teamModel->paginate();
     }
 

@@ -31,12 +31,15 @@
                             <div class="text-right">
                                 <ul class="list-inline">
                                     <li class="list-inline-item mr-0">
-                                        <div class="input-group">                               
-                                            <input type="text" id="example-input1-group2" name="example-input1-group2" class="form-control" placeholder="Pesquisar">
-                                            <span class="input-group-append">
-                                                <button type="button" class="btn btn-gradient-primary"><i class="fas fa-search"></i></button>
-                                            </span>
-                                        </div>
+                                        <form  method="GET">
+                                            <div class="input-group">                                   
+                                                    <input type="text"  name="pesquisar" class="form-control  black" placeholder="Pesquisar">
+                                                    <span class="input-group-append">
+                                                        <button type="submit" class="btn btn-gradient-primary"><i class="fas fa-search"></i></button>
+                                                    </span>
+                                                
+                                            </div>
+                                        </form>
                                     </li>
                                    
                                     <li class="list-inline-item">

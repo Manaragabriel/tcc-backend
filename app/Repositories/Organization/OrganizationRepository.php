@@ -13,7 +13,12 @@ class OrganizationRepository implements IOrganizationRepository{
     }
 
     public function getUserOrganizations(){
-        return Organization::where('user_id',auth()->user()->id)->paginate();
+        $organizations = Organization::where('user_id',auth()->user()->id);
+        $search = request()->input('pesquisar');
+        $organizations = $organizations->when($search, function($query) use($search){
+            return $query->where('name','LIKE','%'.$search.'%');
+        });
+        return $organizations->paginate();
     }
     public function getOrganizationMembers($slug){
         return 'ok';

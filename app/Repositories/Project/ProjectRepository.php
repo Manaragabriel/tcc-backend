@@ -14,6 +14,11 @@ class ProjectRepository implements IProjectRepository{
         $this->projectModel =  $this->projectModel->whereHas('organization', function($query) use($organization_slug){
             $query->where('organizations.slug', $organization_slug);
         });
+        $search = request()->input('pesquisar');
+        $this->projectModel = $this->projectModel->when($search, function($query) use($search){
+            return $query->where('title','LIKE','%'.$search.'%');
+        });
+
         return $this->projectModel->paginate();
     }
 

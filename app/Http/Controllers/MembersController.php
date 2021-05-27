@@ -34,9 +34,13 @@ class MembersController extends Controller
             $query->where('organizations_members.organization_id', $organization['id'])->select(['type', 'organization_id','organizations_members.user_id']);
         }])->whereHas('organizations_member',function($query) use ($slug) {
             $query->where('slug',$slug);
-        })->get();
+        });
+        $search = request()->input('pesquisar');
+        $members = $members->when($search, function($query) use($search){
+            return $query->where('name','LIKE','%'.$search.'%');
+        });
 
-        $data['members'] = $members;
+        $data['members'] = $members->get();
        
         return $this->view_organization('system/members/index',$data);
     }
